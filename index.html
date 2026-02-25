@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CODE98 · FIFO Payouts Engine</title>
+    <title>CODE 98 · FIFO Payment Engine</title>
     <!-- Inter font - professional, clean -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,26 +74,23 @@
 
         /* Hero Section */
         .hero {
-            padding: 3.5rem 0 2rem;
+            padding: 3rem 0 1.5rem;
             text-align: left;
             max-width: 800px;
         }
 
         .hero h1 {
-            font-size: 3.2rem;
+            font-size: 3rem;
             font-weight: 700;
             letter-spacing: -0.02em;
             line-height: 1.2;
-            background: linear-gradient(135deg, #1A3F2B, #005C99, #003366);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
+            color: #1e293b;
+            margin-bottom: 0.75rem;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #475569;
-            margin-bottom: 1.5rem;
         }
 
         .hero-badge {
@@ -108,41 +105,41 @@
             border: 1px solid rgba(0,92,153,0.1);
         }
 
-        /* Amount Selection Grid - Client Focused */
+        /* Selection Panel */
         .selection-panel {
             background: white;
             border-radius: 2rem;
             padding: 2.5rem;
             box-shadow: 0 20px 40px -12px rgba(0,0,0,0.08);
-            margin: 2rem 0 3rem;
+            margin: 1.5rem 0 3rem;
             border: 1px solid #eef2f6;
         }
 
         .panel-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 600;
             color: #1e293b;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
         .panel-subtitle {
             color: #64748b;
             margin-bottom: 2rem;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .amount-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 1rem;
-            margin: 2rem 0 0.5rem;
+            margin: 2rem 0 1.5rem;
         }
 
         .amount-card {
             background: white;
             border: 1.5px solid #e2e8f0;
             border-radius: 1.5rem;
-            padding: 1.25rem 0.5rem;
+            padding: 1.25rem 0.75rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
@@ -161,10 +158,12 @@
             background: linear-gradient(to bottom, #f8fbff, white);
         }
 
-        .amount-card .currency {
-            font-size: 0.8rem;
-            color: #64748b;
-            font-weight: 500;
+        .pay-get {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1A3F2B;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.3px;
         }
 
         .amount-card .value {
@@ -174,24 +173,13 @@
             line-height: 1.2;
         }
 
-        .amount-card .value small {
-            font-size: 1rem;
-            font-weight: 400;
-            color: #64748b;
-        }
-
-        .amount-card .badge-payout {
-            background: #e9f0f9;
+        .amount-card .get-amount {
+            font-size: 1.3rem;
+            font-weight: 700;
             color: #005C99;
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 0.2rem 0.8rem;
-            border-radius: 40px;
-            display: inline-block;
-            margin-top: 0.5rem;
+            margin: 0.25rem 0;
         }
 
-        /* M-Pesa Green & Co-op Bank Blue gradient accents */
         .amount-card::before {
             content: '';
             position: absolute;
@@ -225,7 +213,7 @@
         .selected-info {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 2rem;
             flex-wrap: wrap;
         }
 
@@ -234,14 +222,14 @@
             color: white;
             padding: 0.75rem 2rem;
             border-radius: 3rem;
-            font-weight: 600;
-            font-size: 1.2rem;
+            font-weight: 500;
+            font-size: 1.1rem;
         }
 
         .selected-amount-box span {
             font-weight: 700;
             font-size: 1.8rem;
-            margin-left: 0.5rem;
+            margin: 0 0.5rem;
         }
 
         .payout-info {
@@ -250,6 +238,7 @@
 
         .payout-info strong {
             color: #1A3F2B;
+            font-size: 1.3rem;
         }
 
         .pay-button {
@@ -263,7 +252,6 @@
             cursor: pointer;
             transition: all 0.2s;
             box-shadow: 0 8px 16px -8px rgba(26,63,43,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .pay-button:hover {
@@ -272,70 +260,7 @@
             box-shadow: 0 12px 20px -10px rgba(26,63,43,0.4);
         }
 
-        .pay-button:active {
-            transform: translateY(0);
-        }
-
-        /* Protocol Section */
-        .protocol-section {
-            background: white;
-            border-radius: 2rem;
-            padding: 3rem;
-            margin: 3rem 0;
-            border: 1px solid #eef2f6;
-        }
-
-        .protocol-section h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 1.5rem;
-        }
-
-        .protocol-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .protocol-item {
-            padding: 1.5rem;
-            background: #f8fafc;
-            border-radius: 1.5rem;
-            border-left: 4px solid #005C99;
-        }
-
-        .protocol-item h3 {
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: #1A3F2B;
-        }
-
-        .protocol-item p {
-            color: #475569;
-            font-size: 0.95rem;
-        }
-
-        .invariant-box {
-            background: linear-gradient(135deg, #f0f5ff, #ffffff);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            margin-top: 2rem;
-            border: 1px solid #cbd5e1;
-        }
-
-        .invariant-box p {
-            font-size: 1.1rem;
-            color: #1e293b;
-        }
-
-        .invariant-box .emphasis {
-            color: #005C99;
-            font-weight: 600;
-        }
-
-        /* Partners Footer */
+        /* Partners Footer - Text Only */
         .partners {
             display: flex;
             justify-content: center;
@@ -346,41 +271,34 @@
             padding: 2rem 0;
             border-top: 1px solid #e9edf2;
             border-bottom: 1px solid #e9edf2;
+            color: #64748b;
+            font-weight: 500;
         }
 
-        .partner-logo {
-            height: 40px;
-            object-fit: contain;
-            filter: grayscale(0.3);
-            opacity: 0.8;
-            transition: all 0.2s;
+        .partner-text {
+            font-size: 1rem;
+            color: #475569;
+            letter-spacing: 0.3px;
         }
 
-        .partner-logo:hover {
-            filter: grayscale(0);
-            opacity: 1;
+        .partner-text span {
+            font-weight: 600;
         }
 
-        /* SVG logos as inline to avoid external requests */
-        .mpesa-logo {
-            width: 120px;
-            height: 40px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60"><path fill="%231A3F2B" d="M30 15c-8.3 0-15 6.7-15 15s6.7 15 15 15 15-6.7 15-15-6.7-15-15-15zm0 24c-5 0-9-4-9-9s4-9 9-9 9 4 9 9-4 9-9 9z"/><path fill="%231A3F2B" d="M70 25h-8v-8h-6v8h-8v6h8v8h6v-8h8v-6zM100 15c-8.3 0-15 6.7-15 15s6.7 15 15 15 15-6.7 15-15-6.7-15-15-15zm0 24c-5 0-9-4-9-9s4-9 9-9 9 4 9 9-4 9-9 9zM140 25h-8v-8h-6v8h-8v6h8v8h6v-8h8v-6zM170 15c-8.3 0-15 6.7-15 15s6.7 15 15 15 15-6.7 15-15-6.7-15-15-15zm0 24c-5 0-9-4-9-9s4-9 9-9 9 4 9 9-4 9-9 9z"/><text x="30" y="55" font-family="Arial" font-size="8" fill="%231A3F2B">M-PESA</text></svg>') no-repeat center;
-            background-size: contain;
-        }
+        .partner-text.mpesa { color: #1A3F2B; }
+        .partner-text.coop { color: #005C99; }
+        .partner-text.intasend { color: #334155; }
 
-        .coop-logo {
-            width: 140px;
-            height: 40px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60"><rect width="200" height="60" fill="%23005C99" opacity="0.1"/><path fill="%23005C99" d="M40 20h20v20H40z"/><text x="70" y="40" font-family="Arial" font-size="14" font-weight="bold" fill="%23005C99">Co-op Bank</text></svg>') no-repeat center;
-            background-size: contain;
-        }
-
-        .intasend-logo {
-            width: 140px;
-            height: 40px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60"><path fill="%23334155" d="M30 20l15 20-15 20h20l15-20-15-20H30z"/><text x="70" y="40" font-family="Arial" font-size="14" font-weight="bold" fill="%23334155">IntaSend</text></svg>') no-repeat center;
-            background-size: contain;
+        /* Protocol Section - Minimal */
+        .protocol-note {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin: 2rem 0 3rem;
+            border: 1px solid #eef2f6;
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         /* Terms Pages */
@@ -401,26 +319,6 @@
             box-shadow: 0 20px 40px -12px rgba(0,0,0,0.08);
         }
 
-        .legal-content h1 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            color: #1e293b;
-        }
-
-        .legal-content h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 2rem 0 1rem;
-            color: #005C99;
-        }
-
-        .legal-content p {
-            color: #475569;
-            margin-bottom: 1rem;
-            line-height: 1.7;
-        }
-
         footer {
             text-align: center;
             padding: 2rem 0 3rem;
@@ -429,13 +327,9 @@
         }
 
         @media (max-width: 700px) {
-            .hero h1 { font-size: 2.4rem; }
+            .hero h1 { font-size: 2.2rem; }
             .action-panel { flex-direction: column; align-items: stretch; }
             .selected-info { justify-content: center; }
-            .amount-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media (max-width: 480px) {
             .amount-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
@@ -443,9 +337,9 @@
 <body>
     <div class="container">
         <nav>
-            <div class="logo">CODE98</div>
+            <div class="logo">CODE 98</div>
             <div class="nav-links">
-                <a onclick="showPage('home')" class="active" id="nav-home">Engine</a>
+                <a onclick="showPage('home')" class="active" id="nav-home">Payment Engine</a>
                 <a onclick="showPage('terms')" id="nav-terms">Terms</a>
                 <a onclick="showPage('partners')" id="nav-partners">Infrastructure</a>
             </div>
@@ -454,143 +348,119 @@
         <!-- HOME PAGE -->
         <div id="page-home" class="page active">
             <div class="hero">
-                <div class="hero-badge">CODE98 FIFO PAYOUTS ENGINE</div>
+                <div class="hero-badge">CODE 98 FIFO PAYMENT ENGINE</div>
                 <h1>First-In, First-Out<br>Queue Protocol</h1>
-                <p>Institutional-grade settlement with strict chronological ordering. Select your amount below.</p>
+                <p>Select your amount below.</p>
             </div>
 
-            <!-- Client-Focused Selection Panel -->
+            <!-- Amount Selection Panel -->
             <div class="selection-panel">
                 <div class="panel-title">Select payment amount</div>
-                <div class="panel-subtitle">Choose from fixed denominations — each maintains an independent FIFO queue</div>
+                <div class="panel-subtitle">Fixed denominations with independent queues</div>
                 
                 <div class="amount-grid" id="amountGrid">
-                    <!-- Amount cards generated by JavaScript -->
+                    <!-- Generated by JavaScript -->
                 </div>
 
                 <div class="action-panel">
                     <div class="selected-info">
                         <div class="selected-amount-box" id="selectedAmountDisplay">
-                            <span id="selectedValue">—</span> KES
+                            Pay <span id="selectedValue">—</span> KES
                         </div>
                         <div class="payout-info" id="payoutInfo">
-                            Select an amount to view payout
+                            Get <strong id="selectedGet">—</strong> KES
                         </div>
                     </div>
                     <button class="pay-button" id="payButton" onclick="processPayment()">Pay Now →</button>
                 </div>
             </div>
 
-            <!-- Protocol Explanation -->
-            <div class="protocol-section">
-                <h2>Strict-Order Queue Protocol</h2>
-                <div class="protocol-grid">
-                    <div class="protocol-item">
-                        <h3>Denomination Isolation</h3>
-                        <p>Each amount (50, 100, 200, etc.) operates as an independent queue. No cross-amount mixing or aggregation.</p>
-                    </div>
-                    <div class="protocol-item">
-                        <h3>Chronological Order</h3>
-                        <p>Participants appended strictly by arrival time. The nth participant settles immediately after the (n-1)th.</p>
-                    </div>
-                    <div class="protocol-item">
-                        <h3>Atomic Disbursement</h3>
-                        <p>When a queue reaches two participants, the head settles instantly — return to customer plus administrative fee.</p>
-                    </div>
-                </div>
-                <div class="invariant-box">
-                    <p><span class="emphasis">⏳ Invariant:</span> First-In, First-Out across every denomination. No reordering, no prioritization, no preemption. Cryptographic ordering ensures auditability.</p>
-                    <p style="margin-top: 1rem; color: #64748b;">System commits within milliseconds; external mobile money latency may affect final visibility.</p>
-                </div>
+            <!-- Minimal Protocol Note -->
+            <div class="protocol-note">
+                <p>CODE 98 operates a strict chronological queue for each denomination. Upon receipt, participants are appended to the tail. When a subsequent payment enters the same queue, the head participant settles automatically — return amount plus administrative fee.</p>
             </div>
         </div>
 
         <!-- TERMS PAGE -->
         <div id="page-terms" class="page">
             <div class="legal-content">
-                <h1>Terms & Queue Protocol</h1>
+                <h1>Terms</h1>
                 <div style="background: #f1f5f9; padding: 1rem 1.5rem; border-radius: 1rem; margin-bottom: 2rem;">
                     Version 4.2.1 · March 2026
                 </div>
                 
                 <h2>1. Definitions</h2>
-                <p><strong>Code98</strong> refers to the proprietary queue-based settlement engine. <strong>Participant</strong> means any individual or entity that initiates a consideration transfer to any Code98-designated payment instrument. <strong>FIFO Queue</strong> means a first-in, first-out chronological container where consideration events are ordered exclusively by system receipt timestamp. <strong>Denomination-Specific Ledger</strong> refers to the discrete queue maintained for each precise consideration amount.</p>
+                <p><strong>CODE 98</strong> refers to the proprietary queue-based settlement engine. <strong>Participant</strong> means any individual or entity that initiates a consideration transfer. <strong>Queue</strong> means a chronological container where consideration events are ordered by receipt timestamp. <strong>Denomination</strong> means the exact amount remitted.</p>
                 
                 <h2>2. Queue Formation</h2>
-                <p>Upon successful validation of an incoming consideration, the participant is irrevocably appended to the tail of the queue corresponding to the exact amount remitted. Each denomination operates autonomously — no cross-denomination aggregation, substitution, or priority inversion is permitted. The chronological order is cryptographically sealed at the moment of enqueuing.</p>
+                <p>Upon validation, the participant is appended to the tail of the queue corresponding to the exact amount. Each denomination operates independently — no cross-denomination aggregation is permitted.</p>
                 
-                <h2>3. Settlement Trigger</h2>
-                <p>A disbursement event for the head of any queue is triggered automatically upon detection of a subsequent enqueuing within the same denomination. The instruction comprises two simultaneous components: return consideration to the original participant, and administrative fee to the designated operational account. Both execute atomically where infrastructure permits.</p>
+                <h2>3. Settlement</h2>
+                <p>A disbursement for the head of any queue is triggered upon detection of a subsequent enqueuing within the same denomination. The instruction comprises return consideration to the original participant and administrative fee to the designated account.</p>
                 
                 <h2>4. Denomination Integrity</h2>
-                <p>The system enforces strict denomination integrity: a consideration of 50 KES can only be paired with another 50 KES consideration. This ensures the probabilistic payout model remains mathematically consistent and administratively predictable.</p>
+                <p>The system enforces strict denomination integrity: each amount pairs only with the same amount.</p>
                 
                 <h2>5. Administrative Fee</h2>
-                <p>The administrative fee deducted from each disbursement is fixed per denomination as published in the interface. This compensates Code98 for queue infrastructure, regulatory compliance, audit trails, and payment partner integration.</p>
+                <p>The administrative fee is fixed per denomination as published.</p>
                 
                 <h2>6. Disclaimer</h2>
-                <p>The Code98 system is provided on an "as is" and "as available" basis. Code98 makes no representations or warranties regarding operation, availability, or timeliness. To the fullest extent permitted by law, Code98 shall not be liable for indirect, incidental, or consequential damages arising from delays in disbursement or inability to access queues.</p>
+                <p>The CODE 98 system is provided on an "as is" basis. CODE 98 shall not be liable for delays in disbursement or inability to access queues.</p>
                 
                 <h2>7. Governing Law</h2>
-                <p>This Agreement shall be governed by the laws of the Republic of Kenya. Disputes shall first be referred to mediation under Nairobi Centre for International Arbitration rules.</p>
-                
-                <p style="margin-top: 3rem; font-style: italic;">By proceeding with any payment, you affirm that you have read, understood, and agree to be bound by these terms.</p>
+                <p>This Agreement shall be governed by the laws of the Republic of Kenya.</p>
             </div>
         </div>
 
         <!-- INFRASTRUCTURE PAGE -->
         <div id="page-partners" class="page">
             <div class="legal-content">
-                <h1>Infrastructure Partners</h1>
+                <h1>Infrastructure</h1>
                 <div style="background: #f1f5f9; padding: 1rem 1.5rem; border-radius: 1rem; margin-bottom: 2rem;">
                     Institutional-Grade Settlement Layer
                 </div>
                 
-                <h2>Primary Processing</h2>
-                <p>Code98's settlement layer is built atop <strong>IntaSend</strong> (PCI-DSS Level 1 certified), which facilitates collection and disbursement to mobile money wallets across East Africa. All value transfers are processed under bank-grade security with full encryption and auditability.</p>
+                <h2>Processing Partner</h2>
+                <p>CODE 98 utilizes IntaSend (PCI-DSS Level 1 certified) for collection and disbursement to mobile money wallets across East Africa.</p>
                 
                 <h2>Mobile Money Connectivity</h2>
-                <p>For M-PESA transactions, IntaSend maintains direct integration with Safaricom's Daraja API, supplemented by redundant fallback aggregators. Settlement finality is subject to Safaricom's terms of use and clearing schedules.</p>
+                <p>For M-PESA transactions, IntaSend maintains direct integration with Safaricom's Daraja API.</p>
                 
                 <h2>Queue Orchestration</h2>
-                <p>The proprietary FIFO engine resides on Code98 infrastructure, isolated from payment providers. It communicates via authenticated webhooks and idempotent transaction calls, ensuring exactly-once disbursement. Daily reconciliation employs cryptographic hash chains linking queue events to corresponding disbursements.</p>
+                <p>The proprietary FIFO engine resides on CODE 98 infrastructure, isolated from payment providers. Communication occurs via authenticated webhooks.</p>
                 
                 <h2>Regulatory Compliance</h2>
-                <p>Code98 operates in alignment with the National Payment System Act and Central Bank of Kenya guidelines. Funds at no time reside in unregulated custody — they are either in transit via licensed payment rails or disbursed per queue logic.</p>
-                
-                <h2>Business Continuity</h2>
-                <p>Infrastructure is distributed across multiple availability zones with automated failover. In the event of provider outage, queues are preserved and settlement resumes automatically upon restoration.</p>
+                <p>CODE 98 operates in alignment with Central Bank of Kenya guidelines.</p>
             </div>
         </div>
 
-        <!-- Partners Footer (visible on all pages) -->
+        <!-- Partners Footer - Text Only -->
         <div class="partners">
-            <div class="mpesa-logo" title="M-PESA"></div>
-            <div class="coop-logo" title="Co-operative Bank"></div>
-            <div class="intasend-logo" title="IntaSend"></div>
+            <div class="partner-text mpesa"><span>M-PESA</span></div>
+            <div class="partner-text coop"><span>Co-op Bank</span></div>
+            <div class="partner-text intasend"><span>IntaSend</span></div>
         </div>
 
         <footer>
-            <p>© 2026 CODE98 · FIFO Payouts Engine</p>
-            <p style="margin-top: 0.5rem;">M-PESA, Co-op Bank and IntaSend are independent third-party providers</p>
+            <p>© 2026 CODE 98 · FIFO Payment Engine</p>
         </footer>
     </div>
 
     <script>
-        // Amount data with payout rules
+        // Amount data with CORRECT math
         const amounts = [
-            { value: 50, payout: 70, badge: 'S50' },
-            { value: 100, payout: 70, badge: 'S100' },
-            { value: 200, payout: 160, badge: 'S200' },
-            { value: 500, payout: 400, badge: 'S500' },
-            { value: 1000, payout: 800, badge: 'S1000' },
-            { value: 2500, payout: 2000, badge: 'G2.5' },
-            { value: 3500, payout: 2800, badge: 'G3.5' },
-            { value: 5000, payout: 4000, badge: 'P5' },
-            { value: 6000, payout: 4800, badge: 'P6' },
-            { value: 12000, payout: 9600, badge: 'D12' },
-            { value: 20000, payout: 16000, badge: 'D20' },
-            { value: 25000, payout: 20000, badge: 'D25' }
+            { value: 50, get: 70, badge: 'S50' },
+            { value: 100, get: 80, badge: 'S100' },  // CORRECTED: 100 → get 80
+            { value: 200, get: 160, badge: 'S200' },
+            { value: 500, get: 400, badge: 'S500' },
+            { value: 1000, get: 800, badge: 'S1000' },
+            { value: 2500, get: 2000, badge: 'G2.5' },
+            { value: 3500, get: 2800, badge: 'G3.5' },
+            { value: 5000, get: 4000, badge: 'P5' },
+            { value: 6000, get: 4800, badge: 'P6' },
+            { value: 12000, get: 9600, badge: 'D12' },
+            { value: 20000, get: 16000, badge: 'D20' },
+            { value: 25000, get: 20000, badge: 'D25' }
         ];
 
         // Payment links mapping
@@ -623,9 +493,10 @@
                 card.onclick = () => selectAmount(amt.value);
                 
                 card.innerHTML = `
-                    <div class="currency">KES</div>
-                    <div class="value">${amt.value.toLocaleString()}</div>
-                    <div class="badge-payout">pays ${amt.payout.toLocaleString()}</div>
+                    <div class="pay-get">PAY</div>
+                    <div class="value">${amt.value.toLocaleString()} KES</div>
+                    <div class="pay-get" style="margin-top: 0.5rem;">GET</div>
+                    <div class="get-amount">${amt.get.toLocaleString()} KES</div>
                 `;
                 
                 grid.appendChild(card);
@@ -648,7 +519,7 @@
             document.getElementById('selectedValue').textContent = amount.toLocaleString();
             
             const selected = amounts.find(a => a.value === amount);
-            document.getElementById('payoutInfo').innerHTML = `You receive <strong>KES ${selected.payout.toLocaleString()}</strong> · Queue position activates immediately`;
+            document.getElementById('selectedGet').textContent = selected.get.toLocaleString();
         }
 
         // Process payment
