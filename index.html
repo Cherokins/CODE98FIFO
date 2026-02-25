@@ -42,6 +42,7 @@
             background: linear-gradient(135deg, #1e293b, #334155);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            cursor: pointer;
         }
 
         .nav-links {
@@ -56,6 +57,7 @@
             cursor: pointer;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid transparent;
+            transition: all 0.2s;
         }
 
         .nav-links a:hover,
@@ -64,6 +66,15 @@
             border-bottom: 2px solid #0f172a;
         }
 
+        /* Page visibility */
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+
+        /* Home page */
         .hero {
             padding: 3rem 0 1.5rem;
             text-align: center;
@@ -153,106 +164,115 @@
             margin: 0.25rem 0;
         }
 
-        .action-panel {
-            background: #f8fafc;
-            border-radius: 1.5rem;
-            padding: 2rem;
-            margin-top: 2rem;
-            display: flex;
-            flex-wrap: wrap;
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
             align-items: center;
-            justify-content: space-between;
-            gap: 1.5rem;
+            justify-content: center;
+            z-index: 1000;
         }
 
-        .selected-info {
+        .modal-overlay.active {
             display: flex;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
         }
 
-        .selected-box {
-            background: #0f172a;
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 3rem;
-            font-weight: 500;
+        .modal {
+            background: white;
+            border-radius: 2rem;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
         }
 
-        .selected-box span {
-            font-weight: 700;
+        .modal h3 {
             font-size: 1.8rem;
-            margin: 0 0.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
 
-        .payout-display {
-            color: #475569;
-        }
-
-        .payout-display strong {
+        .modal-amount {
+            font-size: 3rem;
+            font-weight: 800;
             color: #0f172a;
-            font-size: 1.3rem;
+            margin: 1rem 0;
         }
 
-        .pay-button {
+        .modal-get {
+            font-size: 2rem;
+            color: #334155;
+            margin-bottom: 2rem;
+        }
+
+        .modal-button {
+            display: inline-block;
             background: #0f172a;
             color: white;
-            border: none;
+            text-decoration: none;
             padding: 1rem 3rem;
             border-radius: 3rem;
             font-weight: 600;
             font-size: 1.2rem;
+            margin: 1rem 0;
+            width: 100%;
+            border: none;
             cursor: pointer;
-            transition: all 0.2s;
         }
 
-        .pay-button:hover {
-            background: #1e293b;
+        .modal-close {
+            background: #e2e8f0;
+            color: #334155;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 3rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 1rem;
         }
 
-        /* White Paper Section - intentionally dense */
+        /* White Paper Section */
         .white-paper {
             background: #ffffff;
             border-radius: 2rem;
             padding: 3.5rem;
-            margin: 3rem 0;
+            margin: 2rem 0;
             border: 1px solid #e2e8f0;
-            font-family: 'Inter', serif;
         }
 
         .white-paper h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #0f172a;
+            font-size: 2rem;
+            font-weight: 700;
             margin-bottom: 2rem;
-            letter-spacing: -0.01em;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 1rem;
+            color: #0f172a;
         }
 
         .white-paper h3 {
             font-size: 1.3rem;
             font-weight: 600;
-            color: #334155;
             margin: 2rem 0 1rem;
+            color: #334155;
         }
 
         .white-paper p {
             color: #475569;
-            margin-bottom: 1.5rem;
             line-height: 1.8;
-            font-size: 1rem;
+            margin-bottom: 1.5rem;
             text-align: justify;
         }
 
         .white-paper .abstract {
-            font-style: italic;
             background: #f8fafc;
-            padding: 1.5rem;
+            padding: 2rem;
             border-radius: 1rem;
             margin-bottom: 2rem;
             border-left: 4px solid #94a3b8;
+            font-style: italic;
         }
 
         .white-paper .lemma {
@@ -263,7 +283,34 @@
             font-weight: 500;
         }
 
-        /* Partners Section */
+        /* Terms Section */
+        .terms {
+            background: white;
+            border-radius: 2rem;
+            padding: 3rem;
+            margin: 2rem 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .terms h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .terms h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+        }
+
+        .terms p {
+            color: #475569;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Partners Footer */
         .partners {
             display: flex;
             justify-content: center;
@@ -275,10 +322,6 @@
             border-bottom: 1px solid #e2e8f0;
             color: #64748b;
             font-weight: 500;
-        }
-
-        .partner {
-            color: #475569;
         }
 
         .partner.mpesa { color: #1e3a3f; }
@@ -300,7 +343,7 @@
 <body>
     <div class="container">
         <nav>
-            <div class="logo">CODE 98</div>
+            <div class="logo" onclick="showPage('home')">CODE 98</div>
             <div class="nav-links">
                 <a onclick="showPage('home')" class="active" id="nav-home">Engine</a>
                 <a onclick="showPage('paper')" id="nav-paper">White Paper</a>
@@ -320,18 +363,6 @@
                 <div class="panel-title">Select payment amount</div>
                 
                 <div class="amount-grid" id="amountGrid"></div>
-
-                <div class="action-panel">
-                    <div class="selected-info">
-                        <div class="selected-box" id="selectedDisplay">
-                            Pay <span id="selectedPay">—</span> KES
-                        </div>
-                        <div class="payout-display" id="payoutDisplay">
-                            Get <strong id="selectedGet">—</strong> KES
-                        </div>
-                    </div>
-                    <button class="pay-button" onclick="processPayment()">Pay →</button>
-                </div>
             </div>
         </div>
 
@@ -384,27 +415,35 @@
 
         <!-- TERMS PAGE -->
         <div id="page-terms" class="page">
-            <div class="white-paper" style="padding: 2.5rem;">
-                <h2>Terms</h2>
-                <p style="margin-bottom: 2rem;">Version 4.2.1 · March 2026</p>
+            <div class="terms">
+                <h2>Terms and Conditions</h2>
+                <p style="margin-bottom: 2rem; color: #64748b;">Version 4.2.1 · March 2026</p>
                 
                 <h3>1. Definitions</h3>
-                <p>CODE 98 refers to the proprietary queue-based settlement engine. Participant means any individual or entity that initiates a consideration transfer. Queue means a chronological container where consideration events are ordered by receipt timestamp.</p>
+                <p>CODE 98 refers to the proprietary queue-based settlement engine. Participant means any individual or entity that initiates a consideration transfer to any CODE98-designated payment instrument. Queue means a chronological container where consideration events are ordered exclusively by system receipt timestamp. Denomination means the exact amount remitted by a Participant.</p>
                 
                 <h3>2. Queue Formation</h3>
-                <p>Upon validation, the participant is appended to the tail of the queue corresponding to the exact amount remitted. Each denomination operates independently.</p>
+                <p>Upon successful validation of an incoming consideration, the Participant is irrevocably appended to the tail of the queue corresponding to the exact amount remitted. Each denomination operates independently — no cross-denomination aggregation, substitution, or priority inversion is permitted. The chronological order is cryptographically sealed at the moment of enqueuing and cannot be altered by any party.</p>
                 
-                <h3>3. Settlement</h3>
-                <p>A disbursement for the head of any queue is triggered upon detection of a subsequent enqueuing within the same denomination. The instruction comprises return consideration to the original participant and administrative fee.</p>
+                <h3>3. Settlement Trigger</h3>
+                <p>A disbursement for the head of any queue is triggered automatically upon detection of a subsequent enqueuing within the same denomination. The instruction comprises two simultaneous components: return consideration to the original Participant, and administrative fee to the designated operational account.</p>
                 
                 <h3>4. Denomination Integrity</h3>
-                <p>The system enforces strict denomination integrity: each amount pairs only with the same amount.</p>
+                <p>The system enforces strict denomination integrity: a consideration of any amount can only be paired with another consideration of the exact same amount. This ensures the probabilistic payout model remains mathematically consistent and administratively predictable.</p>
                 
-                <h3>5. Disclaimer</h3>
-                <p>The CODE 98 system is provided on an "as is" basis. CODE 98 shall not be liable for delays in disbursement or inability to access queues.</p>
+                <h3>5. Administrative Fee</h3>
+                <p>The administrative fee deducted from each disbursement is fixed per denomination as published in the interface. This fee compensates CODE98 for queue infrastructure, regulatory compliance, audit trails, and payment partner integration.</p>
                 
-                <h3>6. Governing Law</h3>
-                <p>This Agreement shall be governed by the laws of the Republic of Kenya.</p>
+                <h3>6. Disclaimer of Warranty</h3>
+                <p>The CODE98 system is provided on an "as is" and "as available" basis. CODE98 makes no representations or warranties regarding operation, availability, or timeliness. To the fullest extent permitted by law, CODE98 shall not be liable for indirect, incidental, or consequential damages arising from delays in disbursement or inability to access queues.</p>
+                
+                <h3>7. Limitation of Liability</h3>
+                <p>CODE98's aggregate liability shall in no event exceed the total administrative fees paid by the Participant in the six months preceding the claim.</p>
+                
+                <h3>8. Governing Law</h3>
+                <p>This Agreement shall be governed by the laws of the Republic of Kenya. Disputes shall first be referred to mediation under Nairobi Centre for International Arbitration rules.</p>
+                
+                <p style="margin-top: 3rem; font-style: italic;">By proceeding with any payment, you affirm that you have read, understood, and agree to be bound by these terms.</p>
             </div>
         </div>
 
@@ -418,6 +457,17 @@
         <footer>
             <p>© 2026 CODE 98</p>
         </footer>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal">
+            <h3>Complete Payment</h3>
+            <div class="modal-amount" id="modalAmount">0 KES</div>
+            <div class="modal-get" id="modalGet">You receive 0 KES</div>
+            <a href="#" id="modalPayLink" class="modal-button" target="_blank">Pay Now →</a>
+            <button class="modal-close" onclick="closeModal()">Close</button>
+        </div>
     </div>
 
     <script>
@@ -452,15 +502,13 @@
             25000: 'https://payment.intasend.com/pay/9772c9c1-90a6-4101-a95c-8ac8f6abffe6/'
         };
 
-        let selectedAmount = null;
-
         function generateAmountGrid() {
             const grid = document.getElementById('amountGrid');
             amounts.forEach(amt => {
                 const card = document.createElement('div');
                 card.className = 'amount-card';
                 card.setAttribute('data-amount', amt.value);
-                card.onclick = () => selectAmount(amt.value);
+                card.onclick = () => openPaymentModal(amt.value);
                 
                 card.innerHTML = `
                     <div class="pay-get">PAY</div>
@@ -472,28 +520,19 @@
             });
         }
 
-        function selectAmount(amount) {
-            selectedAmount = amount;
-            
-            document.querySelectorAll('.amount-card').forEach(card => {
-                card.classList.remove('selected');
-                if (parseInt(card.dataset.amount) === amount) {
-                    card.classList.add('selected');
-                }
-            });
-
-            document.getElementById('selectedPay').textContent = amount.toLocaleString();
+        function openPaymentModal(amount) {
             const selected = amounts.find(a => a.value === amount);
-            document.getElementById('selectedGet').textContent = selected.get.toLocaleString();
+            const link = paymentLinks[amount];
+            
+            document.getElementById('modalAmount').textContent = `${amount.toLocaleString()} KES`;
+            document.getElementById('modalGet').textContent = `You receive ${selected.get.toLocaleString()} KES`;
+            document.getElementById('modalPayLink').href = link;
+            
+            document.getElementById('paymentModal').classList.add('active');
         }
 
-        function processPayment() {
-            if (!selectedAmount) {
-                alert('Select amount');
-                return;
-            }
-            const link = paymentLinks[selectedAmount];
-            if (link) window.open(link, '_blank');
+        function closeModal() {
+            document.getElementById('paymentModal').classList.remove('active');
         }
 
         function showPage(pageId) {
@@ -502,6 +541,17 @@
             
             document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
             document.getElementById('nav-' + pageId).classList.add('active');
+            
+            // Close modal if open when switching pages
+            closeModal();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('paymentModal');
+            if (event.target === modal) {
+                closeModal();
+            }
         }
 
         generateAmountGrid();
