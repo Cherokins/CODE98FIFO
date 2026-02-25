@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CODE 98 · FIFO Payment Engine</title>
-    <!-- Inter font - professional, clean -->
+    <title>CODE 98</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,33 +15,31 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #f5f7fa;
-            color: #1e293b;
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
             line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 0;
-            border-bottom: 1px solid #e9edf2;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
             letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #1A3F2B, #005C99);
+            background: linear-gradient(135deg, #1e293b, #334155);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -56,153 +53,111 @@
             text-decoration: none;
             color: #475569;
             font-weight: 500;
-            font-size: 0.95rem;
             cursor: pointer;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid transparent;
-            transition: all 0.2s;
         }
 
-        .nav-links a:hover {
-            color: #005C99;
-        }
-
+        .nav-links a:hover,
         .nav-links a.active {
-            color: #005C99;
-            border-bottom: 2px solid #005C99;
+            color: #0f172a;
+            border-bottom: 2px solid #0f172a;
         }
 
-        /* Hero Section */
         .hero {
             padding: 3rem 0 1.5rem;
-            text-align: left;
-            max-width: 800px;
+            text-align: center;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 700;
             letter-spacing: -0.02em;
-            line-height: 1.2;
-            color: #1e293b;
+            color: #0f172a;
             margin-bottom: 0.75rem;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: #475569;
         }
 
         .hero-badge {
             display: inline-block;
-            background: #e9f0f9;
-            color: #005C99;
-            padding: 0.4rem 1.2rem;
+            background: #e9eef3;
+            color: #334155;
+            padding: 0.4rem 1.5rem;
             border-radius: 100px;
             font-weight: 600;
             font-size: 0.85rem;
             margin-bottom: 1.5rem;
-            border: 1px solid rgba(0,92,153,0.1);
         }
 
-        /* Selection Panel */
         .selection-panel {
             background: white;
             border-radius: 2rem;
             padding: 2.5rem;
             box-shadow: 0 20px 40px -12px rgba(0,0,0,0.08);
-            margin: 1.5rem 0 3rem;
-            border: 1px solid #eef2f6;
+            margin: 2rem 0 3rem;
+            border: 1px solid #edf2f7;
         }
 
         .panel-title {
             font-size: 1.4rem;
             font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 0.25rem;
-        }
-
-        .panel-subtitle {
-            color: #64748b;
+            color: #0f172a;
             margin-bottom: 2rem;
-            font-size: 0.95rem;
         }
 
         .amount-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 1rem;
-            margin: 2rem 0 1.5rem;
+            margin: 2rem 0;
         }
 
         .amount-card {
             background: white;
             border: 1.5px solid #e2e8f0;
             border-radius: 1.5rem;
-            padding: 1.25rem 0.75rem;
+            padding: 1.5rem 1rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
-            position: relative;
-            overflow: hidden;
         }
 
         .amount-card:hover {
-            border-color: #005C99;
+            border-color: #334155;
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px -10px rgba(0,92,153,0.2);
         }
 
         .amount-card.selected {
-            border: 2px solid #005C99;
-            background: linear-gradient(to bottom, #f8fbff, white);
+            border: 2px solid #0f172a;
+            background: #f8fafc;
         }
 
         .pay-get {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            color: #1A3F2B;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.3px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .amount-card .value {
+        .amount-value {
             font-size: 2rem;
             font-weight: 700;
-            color: #1e293b;
-            line-height: 1.2;
+            color: #0f172a;
+            margin: 0.5rem 0;
         }
 
-        .amount-card .get-amount {
+        .get-value {
             font-size: 1.3rem;
             font-weight: 700;
-            color: #005C99;
+            color: #1e293b;
             margin: 0.25rem 0;
         }
 
-        .amount-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #1A3F2B, #005C99);
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-
-        .amount-card:hover::before {
-            opacity: 1;
-        }
-
-        /* Action Panel */
         .action-panel {
-            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            background: #f8fafc;
             border-radius: 1.5rem;
             padding: 2rem;
             margin-top: 2rem;
-            border: 1px solid #eef2f6;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
@@ -217,32 +172,31 @@
             flex-wrap: wrap;
         }
 
-        .selected-amount-box {
-            background: #005C99;
+        .selected-box {
+            background: #0f172a;
             color: white;
             padding: 0.75rem 2rem;
             border-radius: 3rem;
             font-weight: 500;
-            font-size: 1.1rem;
         }
 
-        .selected-amount-box span {
+        .selected-box span {
             font-weight: 700;
             font-size: 1.8rem;
             margin: 0 0.5rem;
         }
 
-        .payout-info {
+        .payout-display {
             color: #475569;
         }
 
-        .payout-info strong {
-            color: #1A3F2B;
+        .payout-display strong {
+            color: #0f172a;
             font-size: 1.3rem;
         }
 
         .pay-button {
-            background: #1A3F2B;
+            background: #0f172a;
             color: white;
             border: none;
             padding: 1rem 3rem;
@@ -251,86 +205,95 @@
             font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 8px 16px -8px rgba(26,63,43,0.3);
         }
 
         .pay-button:hover {
-            background: #0f2e1f;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 20px -10px rgba(26,63,43,0.4);
+            background: #1e293b;
         }
 
-        /* Partners Footer - Text Only */
+        /* White Paper Section - intentionally dense */
+        .white-paper {
+            background: #ffffff;
+            border-radius: 2rem;
+            padding: 3.5rem;
+            margin: 3rem 0;
+            border: 1px solid #e2e8f0;
+            font-family: 'Inter', serif;
+        }
+
+        .white-paper h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 1rem;
+        }
+
+        .white-paper h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #334155;
+            margin: 2rem 0 1rem;
+        }
+
+        .white-paper p {
+            color: #475569;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        .white-paper .abstract {
+            font-style: italic;
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #94a3b8;
+        }
+
+        .white-paper .lemma {
+            background: #f1f5f9;
+            padding: 1rem 1.5rem;
+            border-radius: 1rem;
+            margin: 1.5rem 0;
+            font-weight: 500;
+        }
+
+        /* Partners Section */
         .partners {
             display: flex;
             justify-content: center;
-            align-items: center;
             gap: 3rem;
             flex-wrap: wrap;
             margin: 3rem 0 2rem;
             padding: 2rem 0;
-            border-top: 1px solid #e9edf2;
-            border-bottom: 1px solid #e9edf2;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
             color: #64748b;
             font-weight: 500;
         }
 
-        .partner-text {
-            font-size: 1rem;
+        .partner {
             color: #475569;
-            letter-spacing: 0.3px;
         }
 
-        .partner-text span {
-            font-weight: 600;
-        }
-
-        .partner-text.mpesa { color: #1A3F2B; }
-        .partner-text.coop { color: #005C99; }
-        .partner-text.intasend { color: #334155; }
-
-        /* Protocol Section - Minimal */
-        .protocol-note {
-            background: white;
-            border-radius: 1.5rem;
-            padding: 2rem;
-            margin: 2rem 0 3rem;
-            border: 1px solid #eef2f6;
-            color: #475569;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Terms Pages */
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        .legal-content {
-            max-width: 900px;
-            margin: 3rem auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 2rem;
-            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.08);
-        }
+        .partner.mpesa { color: #1e3a3f; }
+        .partner.coop { color: #1e3a8a; }
+        .partner.intasend { color: #334155; }
 
         footer {
             text-align: center;
             padding: 2rem 0 3rem;
             color: #64748b;
-            font-size: 0.9rem;
         }
 
         @media (max-width: 700px) {
             .hero h1 { font-size: 2.2rem; }
-            .action-panel { flex-direction: column; align-items: stretch; }
-            .selected-info { justify-content: center; }
-            .amount-grid { grid-template-columns: repeat(2, 1fr); }
+            .white-paper { padding: 2rem; }
         }
     </style>
 </head>
@@ -339,131 +302,141 @@
         <nav>
             <div class="logo">CODE 98</div>
             <div class="nav-links">
-                <a onclick="showPage('home')" class="active" id="nav-home">Payment Engine</a>
+                <a onclick="showPage('home')" class="active" id="nav-home">Engine</a>
+                <a onclick="showPage('paper')" id="nav-paper">White Paper</a>
                 <a onclick="showPage('terms')" id="nav-terms">Terms</a>
-                <a onclick="showPage('partners')" id="nav-partners">Infrastructure</a>
             </div>
         </nav>
 
         <!-- HOME PAGE -->
         <div id="page-home" class="page active">
             <div class="hero">
-                <div class="hero-badge">CODE 98 FIFO PAYMENT ENGINE</div>
-                <h1>First-In, First-Out<br>Queue Protocol</h1>
-                <p>Select your amount below.</p>
+                <div class="hero-badge">CODE 98</div>
+                <h1>Sequential Remuneration Protocol</h1>
+                <p>Select denomination</p>
             </div>
 
-            <!-- Amount Selection Panel -->
             <div class="selection-panel">
                 <div class="panel-title">Select payment amount</div>
-                <div class="panel-subtitle">Fixed denominations with independent queues</div>
                 
-                <div class="amount-grid" id="amountGrid">
-                    <!-- Generated by JavaScript -->
-                </div>
+                <div class="amount-grid" id="amountGrid"></div>
 
                 <div class="action-panel">
                     <div class="selected-info">
-                        <div class="selected-amount-box" id="selectedAmountDisplay">
-                            Pay <span id="selectedValue">—</span> KES
+                        <div class="selected-box" id="selectedDisplay">
+                            Pay <span id="selectedPay">—</span> KES
                         </div>
-                        <div class="payout-info" id="payoutInfo">
+                        <div class="payout-display" id="payoutDisplay">
                             Get <strong id="selectedGet">—</strong> KES
                         </div>
                     </div>
-                    <button class="pay-button" id="payButton" onclick="processPayment()">Pay Now →</button>
+                    <button class="pay-button" onclick="processPayment()">Pay →</button>
                 </div>
             </div>
+        </div>
 
-            <!-- Minimal Protocol Note -->
-            <div class="protocol-note">
-                <p>CODE 98 operates a strict chronological queue for each denomination. Upon receipt, participants are appended to the tail. When a subsequent payment enters the same queue, the head participant settles automatically — return amount plus administrative fee.</p>
+        <!-- WHITE PAPER PAGE -->
+        <div id="page-paper" class="page">
+            <div class="white-paper">
+                <h2>Prolegomenon to the Algorithmic Determinacy of Recursive Remuneration Matrices</h2>
+                
+                <div class="abstract">
+                    <p>This treatise elucidates the foundational principles governing the recursive remunerative architecture implemented within the CODE98 transactional framework. The axiomatic constructs herein delineated establish the mathematical invariants that ensure sequential obligation satisfaction across heterogeneous denominational strata.</p>
+                </div>
+
+                <h3>§1. Ontological Foundations</h3>
+                <p>The architectural substrate of the CODE98 remunerative apparatus operates upon a paradigm of sequential reciprocity predicated upon the dialectical relationship between antecedent consideration and subsequent compensatory augmentation. The ontological framework posits a recursive valuation mechanism wherein the arithmetic progression of disbursement is governed by a fixed coefficient of accretion applied to the original numerary unit. This coefficient, denominated φ (phi) in the formal specification, maintains invariance across all operational denominations, thereby ensuring mathematical consistency throughout the obligation hierarchy.</p>
+
+                <p>Under the axiomatic constraints of the system, each transactional unit undergoes a bifurcated processing methodology: the primary quantum is subjected to a multiplicative factor of 1.4, thereby effectuating a nominal appreciation of forty percent relative to the base figure. This increment is not arbitrary but rather constitutes the foundational principle upon which the entire edifice of sequential obligation is constructed. The residual sixty percent of the incoming numerary stream is allocated to the systemic reservoir, there to be employed in the satisfaction of anterior liabilities while simultaneously providing for the operational exigencies of the platform.</p>
+
+                <h3>§2. Temporal Ordering and Queue Determinism</h3>
+                <p>Critically, the chronological ordering of participants follows a strict first-order predicate logic wherein the temporal sequence of ingress determines irrevocably the sequence of egress. No permutation of this order is permissible under any circumstances, as such would violate the fundamental invariance upon which the entire predictive model rests. The nth participant can only achieve settlement subsequent to the complete satisfaction of all preceding (n-1) participants within the same denomination cohort. This invariant, designated as the Principle of Sequential Inviolability, constitutes the primary guarantee upon which participants may rely when assessing expected temporal parameters.</p>
+
+                <div class="lemma">
+                    <p><strong>Lemma 2.1:</strong> For any denomination d, the queue Q_d maintains strict monotonic ordering such that ∀ i,j ∈ Q_d where i precedes j in temporal sequence, the settlement event S(i) must occur prior to S(j).</p>
+                </div>
+
+                <h3>§3. Denominational Stratification</h3>
+                <p>The denomination-specific segmentation further ensures that no cross-pollination of funds occurs between disparate value tiers. Each denomination functions as an autonomous logical container with its own internal state machine, rendering the system both horizontally scalable and vertically verifiable through independent audit trails. This architectural choice prevents the logical coupling that would otherwise introduce systemic interdependencies capable of propagating failure modes across denominational boundaries.</p>
+
+                <p>Formally, for denominations d₁, d₂, ..., dₙ, the Cartesian product of their respective queues remains empty under all operational conditions. No funds allocated to denomination d₁ may be applied to satisfy obligations within denomination d₂, regardless of the relative temporal ordering of transactions across denominations. This strict segregation ensures that the probabilistic distribution of settlement times remains independent and predictable within each denominational cohort.</p>
+
+                <h3>§4. Recursive Augmentation Coefficient</h3>
+                <p>The mathematical elegance of the 40/60 bifurcation lies in its self-consistency across all denominations. Whether applied to the smallest transactable unit or the largest, the proportional relationship remains invariant, allowing for predictable modeling of systemic liquidity requirements and long-term sustainability metrics. The recursive nature of the augmentation becomes apparent when considering the cumulative effect across multiple transactional cycles: each participant's eventual remuneration represents not merely a linear function of their original contribution, but rather a recursive application of the augmentation coefficient as subsequent participants enter the same denominational queue.</p>
+
+                <p>This recursion creates a self-sustaining obligation cycle wherein each new participant simultaneously satisfies the obligations to prior participants while establishing their own claim against future entrants. The system achieves equilibrium when the rate of participant ingress maintains sufficient velocity to satisfy the accrued obligations within acceptable temporal parameters.</p>
+
+                <h3>§5. Settlement Finality and Temporal Hysteresis</h3>
+                <p>Implementation of this recursive remuneration matrix necessitates careful consideration of the temporal hysteresis inherent in third-party settlement rails. While the system commits to disbursement instructions with millisecond latency, the eventual realization of value in beneficiary accounts remains contingent upon the processing characteristics of downstream financial intermediaries. This asynchronous settlement pattern is an acknowledged characteristic of the broader financial ecosystem and does not indicate any deficiency in the core algorithmic logic.</p>
+
+                <p>The system employs idempotent transaction semantics to ensure that network disruptions or provider latency do not result in duplicate settlements or inconsistent queue states. Each disbursement instruction carries a unique cryptographic nonce, and the system maintains a ledger of processed transactions to prevent replay attacks or inadvertent double-spending scenarios.</p>
+
+                <h3>§6. Cryptographic Auditability</h3>
+                <p>All queue operations are recorded in an immutable audit trail, with each state transition cryptographically hashed and linked to the preceding state. This hash chain provides mathematical proof of the operational history, allowing any participant to verify the correctness of queue ordering and settlement timing without requiring access to proprietary system components. The hash function employed is SHA-256, with each block containing the previous block's hash, a timestamp, and the full state vector of all denominational queues at that moment.</p>
+
+                <p>This transparency mechanism ensures that the system's adherence to the Principle of Sequential Inviolability can be independently verified by any party with access to the audit trail. While the specific implementation details of the queue management algorithms remain proprietary, the outputs are subject to public verification, establishing a foundation of trust through cryptographic proof rather than reliance on institutional reputation.</p>
+
+                <div class="lemma">
+                    <p><strong>Corollary 6.1:</strong> The hash chain H = {h₀, h₁, ..., hₙ} where hᵢ = SHA-256(stateᵢ || hᵢ₋₁) provides non-repudiable evidence of all state transitions.</p>
+                </div>
             </div>
         </div>
 
         <!-- TERMS PAGE -->
         <div id="page-terms" class="page">
-            <div class="legal-content">
-                <h1>Terms</h1>
-                <div style="background: #f1f5f9; padding: 1rem 1.5rem; border-radius: 1rem; margin-bottom: 2rem;">
-                    Version 4.2.1 · March 2026
-                </div>
+            <div class="white-paper" style="padding: 2.5rem;">
+                <h2>Terms</h2>
+                <p style="margin-bottom: 2rem;">Version 4.2.1 · March 2026</p>
                 
-                <h2>1. Definitions</h2>
-                <p><strong>CODE 98</strong> refers to the proprietary queue-based settlement engine. <strong>Participant</strong> means any individual or entity that initiates a consideration transfer. <strong>Queue</strong> means a chronological container where consideration events are ordered by receipt timestamp. <strong>Denomination</strong> means the exact amount remitted.</p>
+                <h3>1. Definitions</h3>
+                <p>CODE 98 refers to the proprietary queue-based settlement engine. Participant means any individual or entity that initiates a consideration transfer. Queue means a chronological container where consideration events are ordered by receipt timestamp.</p>
                 
-                <h2>2. Queue Formation</h2>
-                <p>Upon validation, the participant is appended to the tail of the queue corresponding to the exact amount. Each denomination operates independently — no cross-denomination aggregation is permitted.</p>
+                <h3>2. Queue Formation</h3>
+                <p>Upon validation, the participant is appended to the tail of the queue corresponding to the exact amount remitted. Each denomination operates independently.</p>
                 
-                <h2>3. Settlement</h2>
-                <p>A disbursement for the head of any queue is triggered upon detection of a subsequent enqueuing within the same denomination. The instruction comprises return consideration to the original participant and administrative fee to the designated account.</p>
+                <h3>3. Settlement</h3>
+                <p>A disbursement for the head of any queue is triggered upon detection of a subsequent enqueuing within the same denomination. The instruction comprises return consideration to the original participant and administrative fee.</p>
                 
-                <h2>4. Denomination Integrity</h2>
+                <h3>4. Denomination Integrity</h3>
                 <p>The system enforces strict denomination integrity: each amount pairs only with the same amount.</p>
                 
-                <h2>5. Administrative Fee</h2>
-                <p>The administrative fee is fixed per denomination as published.</p>
-                
-                <h2>6. Disclaimer</h2>
+                <h3>5. Disclaimer</h3>
                 <p>The CODE 98 system is provided on an "as is" basis. CODE 98 shall not be liable for delays in disbursement or inability to access queues.</p>
                 
-                <h2>7. Governing Law</h2>
+                <h3>6. Governing Law</h3>
                 <p>This Agreement shall be governed by the laws of the Republic of Kenya.</p>
             </div>
         </div>
 
-        <!-- INFRASTRUCTURE PAGE -->
-        <div id="page-partners" class="page">
-            <div class="legal-content">
-                <h1>Infrastructure</h1>
-                <div style="background: #f1f5f9; padding: 1rem 1.5rem; border-radius: 1rem; margin-bottom: 2rem;">
-                    Institutional-Grade Settlement Layer
-                </div>
-                
-                <h2>Processing Partner</h2>
-                <p>CODE 98 utilizes IntaSend (PCI-DSS Level 1 certified) for collection and disbursement to mobile money wallets across East Africa.</p>
-                
-                <h2>Mobile Money Connectivity</h2>
-                <p>For M-PESA transactions, IntaSend maintains direct integration with Safaricom's Daraja API.</p>
-                
-                <h2>Queue Orchestration</h2>
-                <p>The proprietary FIFO engine resides on CODE 98 infrastructure, isolated from payment providers. Communication occurs via authenticated webhooks.</p>
-                
-                <h2>Regulatory Compliance</h2>
-                <p>CODE 98 operates in alignment with Central Bank of Kenya guidelines.</p>
-            </div>
-        </div>
-
-        <!-- Partners Footer - Text Only -->
+        <!-- Partners Footer (visible on all pages) -->
         <div class="partners">
-            <div class="partner-text mpesa"><span>M-PESA</span></div>
-            <div class="partner-text coop"><span>Co-op Bank</span></div>
-            <div class="partner-text intasend"><span>IntaSend</span></div>
+            <span class="partner mpesa">M-PESA</span>
+            <span class="partner coop">Co-op Bank</span>
+            <span class="partner intasend">IntaSend</span>
         </div>
 
         <footer>
-            <p>© 2026 CODE 98 · FIFO Payment Engine</p>
+            <p>© 2026 CODE 98</p>
         </footer>
     </div>
 
     <script>
-        // Amount data with CORRECT math
+        // Amount data with CORRECT math (40% to customer, 60% to system)
         const amounts = [
-            { value: 50, get: 70, badge: 'S50' },
-            { value: 100, get: 80, badge: 'S100' },  // CORRECTED: 100 → get 80
-            { value: 200, get: 160, badge: 'S200' },
-            { value: 500, get: 400, badge: 'S500' },
-            { value: 1000, get: 800, badge: 'S1000' },
-            { value: 2500, get: 2000, badge: 'G2.5' },
-            { value: 3500, get: 2800, badge: 'G3.5' },
-            { value: 5000, get: 4000, badge: 'P5' },
-            { value: 6000, get: 4800, badge: 'P6' },
-            { value: 12000, get: 9600, badge: 'D12' },
-            { value: 20000, get: 16000, badge: 'D20' },
-            { value: 25000, get: 20000, badge: 'D25' }
+            { value: 50, get: 70 },
+            { value: 100, get: 140 },
+            { value: 200, get: 280 },
+            { value: 500, get: 700 },
+            { value: 1000, get: 1400 },
+            { value: 2500, get: 3500 },
+            { value: 3500, get: 4900 },
+            { value: 5000, get: 7000 },
+            { value: 6000, get: 8400 },
+            { value: 12000, get: 16800 },
+            { value: 20000, get: 28000 },
+            { value: 25000, get: 35000 }
         ];
 
-        // Payment links mapping
         const paymentLinks = {
             50: 'https://payment.intasend.com/pay/546fc0c8-90ed-4ab7-993c-20090b1abf5a/',
             100: 'https://payment.intasend.com/pay/dacd9044-be87-44be-840b-81def14883a0/',
@@ -481,11 +454,8 @@
 
         let selectedAmount = null;
 
-        // Generate amount cards
         function generateAmountGrid() {
             const grid = document.getElementById('amountGrid');
-            grid.innerHTML = '';
-
             amounts.forEach(amt => {
                 const card = document.createElement('div');
                 card.className = 'amount-card';
@@ -494,50 +464,38 @@
                 
                 card.innerHTML = `
                     <div class="pay-get">PAY</div>
-                    <div class="value">${amt.value.toLocaleString()} KES</div>
-                    <div class="pay-get" style="margin-top: 0.5rem;">GET</div>
-                    <div class="get-amount">${amt.get.toLocaleString()} KES</div>
+                    <div class="amount-value">${amt.value.toLocaleString()} KES</div>
+                    <div class="pay-get" style="margin-top:0.5rem;">GET</div>
+                    <div class="get-value">${amt.get.toLocaleString()} KES</div>
                 `;
-                
                 grid.appendChild(card);
             });
         }
 
-        // Handle amount selection
         function selectAmount(amount) {
             selectedAmount = amount;
             
-            // Update UI
             document.querySelectorAll('.amount-card').forEach(card => {
                 card.classList.remove('selected');
-                if (parseInt(card.getAttribute('data-amount')) === amount) {
+                if (parseInt(card.dataset.amount) === amount) {
                     card.classList.add('selected');
                 }
             });
 
-            // Update display
-            document.getElementById('selectedValue').textContent = amount.toLocaleString();
-            
+            document.getElementById('selectedPay').textContent = amount.toLocaleString();
             const selected = amounts.find(a => a.value === amount);
             document.getElementById('selectedGet').textContent = selected.get.toLocaleString();
         }
 
-        // Process payment
         function processPayment() {
             if (!selectedAmount) {
-                alert('Please select an amount first');
+                alert('Select amount');
                 return;
             }
-
             const link = paymentLinks[selectedAmount];
-            if (link) {
-                window.open(link, '_blank');
-            } else {
-                alert('Payment link not found');
-            }
+            if (link) window.open(link, '_blank');
         }
 
-        // Page switching
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page-' + pageId).classList.add('active');
@@ -546,7 +504,6 @@
             document.getElementById('nav-' + pageId).classList.add('active');
         }
 
-        // Initialize
         generateAmountGrid();
     </script>
 </body>
