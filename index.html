@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CODE 98 FIFO</title>
+    <title>CODE 98</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -310,28 +310,62 @@
             line-height: 1.7;
         }
 
-        /* Partners Footer */
-        .partners {
+        /* Trust Badge and Footer */
+        .trust-section {
             display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
             margin: 3rem 0 2rem;
             padding: 2rem 0;
             border-top: 1px solid #e2e8f0;
             border-bottom: 1px solid #e2e8f0;
+        }
+
+        .partner-text {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
             color: #64748b;
             font-weight: 500;
         }
 
-        .partner.mpesa { color: #1e3a3f; }
-        .partner.coop { color: #1e3a8a; }
-        .partner.intasend { color: #334155; }
+        .partner-text .mpesa { color: #1e3a3f; }
+        .partner-text .coop { color: #1e3a8a; }
+        .partner-text .intasend { color: #334155; }
+
+        .trust-badge {
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .trust-badge img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .trust-badge-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.3px;
+            transition: color 0.2s;
+        }
+
+        .trust-badge-link:hover {
+            color: #0f172a;
+        }
 
         footer {
             text-align: center;
-            padding: 2rem 0 3rem;
+            padding: 1.5rem 0 3rem;
             color: #64748b;
+            font-size: 0.9rem;
         }
 
         @media (max-width: 700px) {
@@ -414,47 +448,64 @@
         </div>
 
         <!-- TERMS PAGE -->
-        <!-- TERMS PAGE -->
-<div id="page-terms" class="page">
-    <div class="terms">
-        <h2>Terms and Conditions</h2>
-        <p style="margin-bottom: 2rem; color: #64748b;">Version 4.2.1 · March 2026</p>
-        
-        <h3>1. Definitions</h3>
-        <p>CODE 98 refers to the proprietary queue-based settlement engine. Participant means any individual or entity that initiates a consideration transfer to any CODE98-designated payment instrument. Queue means a chronological container where consideration events are ordered exclusively by system receipt timestamp. Denomination means the exact amount remitted by a Participant.</p>
-        
-        <h3>2. Queue Formation</h3>
-        <p>Upon successful validation of an incoming consideration, the Participant is irrevocably appended to the tail of the queue corresponding to the exact amount remitted. Each denomination operates independently — no cross-denomination aggregation, substitution, or priority inversion is permitted. The chronological order is cryptographically sealed at the moment of enqueuing and cannot be altered by any party.</p>
-        
-        <h3>3. Settlement Trigger</h3>
-        <p>A disbursement for the head of any queue is triggered automatically upon detection of a subsequent enqueuing within the same denomination. The instruction comprises two simultaneous components: return consideration to the original Participant, and administrative fee to the designated operational account.</p>
-        
-        <h3>4. Denomination Integrity</h3>
-        <p>The system enforces strict denomination integrity: a consideration of any amount can only be paired with another consideration of the exact same amount. This ensures the probabilistic payout model remains mathematically consistent and administratively predictable.</p>
-        
-        <h3>5. Administrative Fee</h3>
-        <p>The administrative fee deducted from each disbursement is fixed per denomination as published in the interface. This fee compensates CODE98 for queue infrastructure, regulatory compliance, audit trails, and payment partner integration.</p>
-        
-        <h3>6. Temporal Parameters and Settlement Latency</h3>
-        <p>Participants acknowledge that disbursement finality is contingent upon the confluence of multiple exogenous variables, including but not limited to: the instantaneous velocity of queue propagation within the denominational stratum, the processing characteristics of third-party financial intermediaries, and the temporal hysteresis inherent in mobile money settlement rails. Consequently, while the system commits disbursement instructions with millisecond precision, the phenomenological experience of value realization may be subject to ephemeral delays. Participants are advised that intervals between queue ingress and settlement egress may exhibit variance contingent upon denominational volume and extrinsic network conditions. The system does not guarantee specific temporal parameters, and any expectations regarding expeditious settlement should be tempered by recognition of these operational realities.</p>
-        
-        <h3>7. Disclaimer of Warranty</h3>
-        <p>The CODE98 system is provided on an "as is" and "as available" basis. CODE98 makes no representations or warranties regarding operation, availability, or timeliness. To the fullest extent permitted by law, CODE98 shall not be liable for indirect, incidental, or consequential damages arising from delays in disbursement or inability to access queues.</p>
-        
-        <h3>8. Limitation of Liability</h3>
-        <p>CODE98's aggregate liability shall in no event exceed the total administrative fees paid by the Participant in the six months preceding the claim.</p>
-        
-        <h3>9. Governing Law</h3>
-        <p>This Agreement shall be governed by the laws of the Republic of Kenya. Disputes shall first be referred to mediation under Nairobi Centre for International Arbitration rules.</p>
-        
-        <p style="margin-top: 3rem; font-style: italic;">By proceeding with any payment, you affirm that you have read, understood, and agree to be bound by these terms.</p>
-    </div>
-</div>
-        <!-- Partners Footer (visible on all pages) -->
-        <div class="partners">
-            <span class="partner mpesa">M-PESA</span>
-            <span class="partner coop">Co-op Bank</span>
-            <span class="partner intasend">IntaSend</span>
+        <div id="page-terms" class="page">
+            <div class="terms">
+                <h2>Terms and Conditions</h2>
+                <p style="margin-bottom: 2rem; color: #64748b;">Version 4.2.1 · March 2026</p>
+                
+                <h3>1. Definitions</h3>
+                <p>CODE 98 refers to the proprietary queue-based settlement engine. Participant means any individual or entity that initiates a consideration transfer to any CODE98-designated payment instrument. Queue means a chronological container where consideration events are ordered exclusively by system receipt timestamp. Denomination means the exact amount remitted by a Participant.</p>
+                
+                <h3>2. Queue Formation</h3>
+                <p>Upon successful validation of an incoming consideration, the Participant is irrevocably appended to the tail of the queue corresponding to the exact amount remitted. Each denomination operates independently — no cross-denomination aggregation, substitution, or priority inversion is permitted. The chronological order is cryptographically sealed at the moment of enqueuing and cannot be altered by any party.</p>
+                
+                <h3>3. Settlement Trigger</h3>
+                <p>A disbursement for the head of any queue is triggered automatically upon detection of a subsequent enqueuing within the same denomination. The instruction comprises two simultaneous components: return consideration to the original Participant, and administrative fee to the designated operational account.</p>
+                
+                <h3>4. Denomination Integrity</h3>
+                <p>The system enforces strict denomination integrity: a consideration of any amount can only be paired with another consideration of the exact same amount. This ensures the probabilistic payout model remains mathematically consistent and administratively predictable.</p>
+                
+                <h3>5. Administrative Fee</h3>
+                <p>The administrative fee deducted from each disbursement is fixed per denomination as published in the interface. This fee compensates CODE98 for queue infrastructure, regulatory compliance, audit trails, and payment partner integration.</p>
+                
+                <h3>6. Temporal Parameters and Settlement Latency</h3>
+                <p>Participants acknowledge that disbursement finality is contingent upon the confluence of multiple exogenous variables, including but not limited to: the instantaneous velocity of queue propagation within the denominational stratum, the processing characteristics of third-party financial intermediaries, and the temporal hysteresis inherent in mobile money settlement rails. Consequently, while the system commits disbursement instructions with millisecond precision, the phenomenological experience of value realization may be subject to ephemeral delays. Participants are advised that intervals between queue ingress and settlement egress may exhibit variance contingent upon denominational volume and extrinsic network conditions. The system does not guarantee specific temporal parameters, and any expectations regarding expeditious settlement should be tempered by recognition of these operational realities.</p>
+                
+                <h3>7. Disclaimer of Warranty</h3>
+                <p>The CODE98 system is provided on an "as is" and "as available" basis. CODE98 makes no representations or warranties regarding operation, availability, or timeliness. To the fullest extent permitted by law, CODE98 shall not be liable for indirect, incidental, or consequential damages arising from delays in disbursement or inability to access queues.</p>
+                
+                <h3>8. Limitation of Liability</h3>
+                <p>CODE98's aggregate liability shall in no event exceed the total administrative fees paid by the Participant in the six months preceding the claim.</p>
+                
+                <h3>9. Governing Law</h3>
+                <p>This Agreement shall be governed by the laws of the Republic of Kenya. Disputes shall first be referred to mediation under Nairobi Centre for International Arbitration rules.</p>
+                
+                <p style="margin-top: 3rem; font-style: italic;">By proceeding with any payment, you affirm that you have read, understood, and agree to be bound by these terms.</p>
+            </div>
+        </div>
+
+        <!-- Trust Section with Badge (visible on all pages) -->
+        <div class="trust-section">
+            <div class="partner-text">
+                <span class="mpesa">M-PESA</span>
+                <span class="coop">Co-op Bank</span>
+                <span class="intasend">IntaSend</span>
+            </div>
+            
+            <div class="trust-badge">
+                <a href="https://intasend.com/security" target="_blank">
+                    <img src="https://intasend-prod-static.s3.amazonaws.com/img/trust-badges/intasend-trust-badge-with-mpesa-hr-dark.png" 
+                         width="375px" 
+                         alt="IntaSend Secure Payments (PCI-DSS Compliant)">
+                </a>
+                <div>
+                    <a href="https://intasend.com/security" 
+                       target="_blank" 
+                       class="trust-badge-link">
+                        SECURED BY INTASEND PAYMENTS
+                    </a>
+                </div>
+            </div>
         </div>
 
         <footer>
