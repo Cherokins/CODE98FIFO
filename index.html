@@ -2,988 +2,446 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code98 · FIFO Payouts Engine</title>
-    <!-- Fonts & Styles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>Code98 · institutional FIFO engine</title>
+    <!-- Professional type & system consistency -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
+        /* ---------- reset & base ---------- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #f6f9fe;
+            color: #0b1e33;
             line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
+
         .container {
-            max-width: 1400px;
+            max-width: 1440px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 clamp(1rem, 5vw, 3rem);
+            width: 100%;
         }
-        /* Navigation */
+
+        /* ---------- navigation (touch optimised) ---------- */
         nav {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            gap: 1.5rem 1rem;
+            padding: 1.75rem 0;
+            border-bottom: 1px solid rgba(13, 27, 62, 0.07);
         }
+
         .logo {
-            font-size: 2rem;
+            font-size: clamp(1.8rem, 5vw, 2.4rem);
             font-weight: 800;
             letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            background: linear-gradient(165deg, #13294b, #283593);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
         }
+
         .nav-links {
             display: flex;
-            gap: 3rem;
-            font-weight: 500;
+            gap: clamp(1.2rem, 3vw, 3rem);
+            flex-wrap: wrap;
+            font-weight: 600;
         }
+
         .nav-links a {
             text-decoration: none;
-            color: #334155;
-            transition: color 0.2s;
+            color: #1e2f4a;
+            transition: color 0.2s ease, border-bottom 0.2s;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            padding: 0.25rem 0;
+            border-bottom: 2px solid transparent;
         }
-        .nav-links a:hover {
-            color: #4f46e5;
-        }
+
+        .nav-links a:hover { color: #1d4ed8; }
         .nav-links a.active {
-            color: #4f46e5;
-            font-weight: 600;
+            color: #1d4ed8;
+            border-bottom-color: #1d4ed8;
         }
-        /* Hero */
+
+        /* ---------- hero (fluid) ---------- */
         .hero {
-            padding: 4rem 0 2rem;
+            padding: clamp(2.5rem, 8vh, 5rem) 0 2rem;
             text-align: center;
-            max-width: 900px;
+            max-width: 980px;
             margin: 0 auto;
         }
+
         .hero-badge {
-            background: #e0e7ff;
-            color: #3730a3;
-            padding: 0.5rem 1.5rem;
-            border-radius: 40px;
+            background: #dee5ff;
+            color: #1e3a8a;
+            padding: 0.6rem 1.8rem;
+            border-radius: 60px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             display: inline-block;
             margin-bottom: 2rem;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 6px rgba(0,20,100,0.05);
         }
+
         .hero h1 {
-            font-size: 4rem;
+            font-size: clamp(2.6rem, 8vw, 4.8rem);
             font-weight: 800;
             letter-spacing: -0.03em;
-            line-height: 1.2;
-            background: linear-gradient(to right, #0f172a, #312e81);
+            line-height: 1.15;
+            background: linear-gradient(145deg, #081126, #1e2f6e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1.5rem;
         }
+
         .hero p {
-            font-size: 1.25rem;
-            color: #475569;
-            max-width: 700px;
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            color: #2d4059;
+            max-width: 760px;
             margin: 0 auto 2rem;
+            font-weight: 400;
         }
-        /* Tier Cards */
+
+        /* ---------- pill / category headers ---------- */
+        .pill-category {
+            background: #ffffffd9;
+            backdrop-filter: blur(8px);
+            padding: 0.65rem 2rem;
+            border-radius: 60px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.02), 0 0 0 1px rgba(55,65,81,0.05);
+            margin: 2.5rem 0 1rem;
+            border: 1px solid white;
+        }
+
+        /* ---------- tier cards · fully responsive grid ---------- */
         .tier-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 2.5rem 0 1rem;
         }
+
         .tier-card {
             background: white;
             border-radius: 40px;
-            padding: 2rem 1.5rem;
-            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.02);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(79, 70, 229, 0.1);
-            backdrop-filter: blur(5px);
+            padding: 2rem 1.5rem 1.8rem;
+            box-shadow: 0 18px 30px -12px rgba(0,32,64,0.08), 0 0 0 1px rgba(79,70,229,0.06);
+            transition: transform 0.25s ease, box-shadow 0.4s;
+            border: 1px solid rgba(98, 91, 255, 0.1);
+            display: flex;
+            flex-direction: column;
         }
+
         .tier-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 30px 45px -12px rgba(79,70,229,0.15), 0 0 0 1px rgba(79,70,229,0.2);
+            transform: translateY(-6px);
+            box-shadow: 0 28px 40px -16px rgba(45, 60, 210, 0.18), 0 0 0 1px rgba(67, 56, 202, 0.15);
         }
+
         .tier-name {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 0.25rem;
+            line-height: 1.2;
         }
+
         .tier-sub {
-            color: #64748b;
+            color: #4b587c;
             font-weight: 500;
-            margin-bottom: 1.5rem;
+            margin: 0.25rem 0 1.2rem;
+            font-size: 1rem;
         }
+
         .tier-amount {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 800;
-            color: #1e1b4b;
-            margin-bottom: 1.5rem;
+            color: #10243e;
+            margin-bottom: 1rem;
+            line-height: 1;
         }
+
         .tier-amount small {
             font-size: 1rem;
             font-weight: 500;
-            color: #94a3b8;
+            color: #6f7d9e;
         }
+
         .pay-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            background: #4f46e5;
+            background: #1e3a8a;
             color: white;
             text-align: center;
-            padding: 1rem 0;
+            padding: 1rem 0.5rem;
             border-radius: 60px;
             font-weight: 600;
+            font-size: 1.1rem;
             text-decoration: none;
-            transition: background 0.2s;
-            margin: 1.5rem 0 1rem;
-            box-shadow: 0 10px 20px -8px #4f46e5;
+            transition: background 0.2s, box-shadow 0.2s;
+            margin: 1.5rem 0 0.8rem;
+            box-shadow: 0 10px 22px -10px #1e3a8a;
+            border: none;
+            cursor: pointer;
+            gap: 0.4rem;
         }
+
         .pay-link:hover {
-            background: #4338ca;
+            background: #15327a;
+            box-shadow: 0 15px 25px -12px #0f2b70;
         }
+
         .badge {
             display: inline-block;
-            background: #f1f5f9;
-            color: #334155;
-            padding: 0.25rem 1rem;
+            background: #ecf2fa;
+            color: #1e334e;
+            padding: 0.4rem 1.1rem;
             border-radius: 40px;
             font-size: 0.8rem;
             font-weight: 600;
             margin-right: 0.5rem;
+            margin-bottom: 0.25rem;
         }
-        /* Colors for tiers */
-        .tier-card.diamond .tier-name { color: #5b21b6; }
-        .tier-card.platinum .tier-name { color: #0e7490; }
+
+        /* tier accent colors */
+        .tier-card.diamond .tier-name { color: #2e1d5c; }
+        .tier-card.platinum .tier-name { color: #0b5e6b; }
         .tier-card.gold .tier-name { color: #b45309; }
-        .tier-card.silver .tier-name { color: #4b5563; }
-        /* Explanation section */
-        .explanation {
-            background: #1e1b4b;
+        .tier-card.silver .tier-name { color: #374151; }
+
+        /* ---------- explanation block (ultra premium) ---------- */
+        .protocol-deep {
+            background: #0f1a2f;
             color: white;
-            border-radius: 64px;
-            padding: 4rem 3.5rem;
+            border-radius: clamp(2rem, 6vw, 64px);
+            padding: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 5vw, 4rem);
             margin: 5rem 0;
-            box-shadow: 0 30px 40px -20px #1e1b4b;
+            box-shadow: 0 35px 45px -25px #0f1a2f;
         }
-        .explanation h2 {
-            font-size: 2.8rem;
+
+        .protocol-deep h2 {
+            font-size: clamp(2rem, 6vw, 3.4rem);
             font-weight: 700;
             letter-spacing: -0.02em;
-            margin-bottom: 2rem;
-            max-width: 800px;
-        }
-        .explanation p {
-            font-size: 1.2rem;
-            color: #cbd5e1;
+            margin-bottom: 1.8rem;
             max-width: 900px;
-            margin-bottom: 1.5rem;
+        }
+
+        .protocol-deep p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: #cfdfff;
+            max-width: 1000px;
+            margin-bottom: 1.6rem;
             line-height: 1.7;
         }
-        .fifo-highlight {
-            background: rgba(255,255,255,0.05);
-            border-left: 5px solid #818cf8;
-            padding: 2rem;
-            border-radius: 32px;
-            margin: 2rem 0;
+
+        .fifo-axiom {
+            background: rgba(255,255,255,0.04);
+            border-left: 6px solid #6d8cff;
+            padding: clamp(1.8rem, 4vw, 2.8rem);
+            border-radius: 38px;
+            margin: 2.5rem 0;
         }
-        /* T&Cs Page (hidden by default) */
+
+        /* ---------- legal / pages ---------- */
         .page {
             display: none;
-            animation: fadeIn 0.3s;
+            animation: fadeIn 0.3s ease;
         }
-        .page.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .legal-content {
-            max-width: 900px;
+        .page.active { display: block; }
+        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+        .legal-container {
+            max-width: 1000px;
             margin: 3rem auto;
             background: white;
-            padding: 3.5rem;
-            border-radius: 48px;
-            box-shadow: 0 25px 40px -15px rgba(0,0,0,0.1);
-            border: 1px solid #f0f0f0;
+            padding: clamp(2rem, 6vw, 4rem);
+            border-radius: 56px;
+            box-shadow: 0 25px 45px -20px rgba(0,0,0,0.15);
+            border: 1px solid #f0f2fe;
         }
-        .legal-content h1 {
-            font-size: 2.8rem;
+
+        .legal-container h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
             font-weight: 700;
-            margin-bottom: 2rem;
-            color: #0f172a;
+            margin-bottom: 1.8rem;
+            color: #0b1e33;
         }
-        .legal-content h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin: 2.5rem 0 1rem;
-            color: #1e1b4b;
+
+        .legal-container h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 650;
+            margin: 2.2rem 0 1rem;
+            color: #132b55;
         }
-        .legal-content p {
-            color: #334155;
+
+        .legal-container p {
+            color: #263b55;
             margin-bottom: 1.2rem;
             font-size: 1.05rem;
             line-height: 1.7;
         }
-        .legal-content .legal-note {
-            background: #f8fafc;
-            padding: 1.5rem;
-            border-radius: 24px;
-            border-left: 4px solid #4f46e5;
+
+        .legal-note-card {
+            background: #f4f7fd;
+            padding: 1.8rem;
+            border-radius: 28px;
+            border-left: 6px solid #2563eb;
             margin: 2rem 0;
         }
-        /* Footer */
+
+        /* ---------- footer ---------- */
         footer {
             text-align: center;
-            padding: 3rem 0;
-            border-top: 1px solid #e2e8f0;
-            color: #64748b;
+            padding: 3rem 0 2.5rem;
+            border-top: 1px solid #dfe7f2;
+            color: #4f5e7a;
             margin-top: 4rem;
+            font-size: 0.95rem;
         }
-        .pill {
-            background: #f1f5f9;
-            padding: 0.5rem 1.5rem;
-            border-radius: 60px;
-            display: inline-block;
-            font-weight: 500;
+
+        /* ---------- responsive micro adjustment ---------- */
+        @media (max-width: 500px) {
+            .tier-card { padding: 1.8rem 1.2rem; }
+            .badge { margin-bottom: 0.4rem; }
+            .nav-links { gap: 0.8rem; }
+            .logo { font-size: 1.9rem; }
         }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        @media (max-width: 700px) {
-            .hero h1 { font-size: 3rem; }
-            .nav-links { gap: 1.5rem; }
-            .grid-2 { grid-template-columns: 1fr; }
+        @media (min-width: 1400px) {
+            .tier-grid { grid-template-columns: repeat(5, 1fr); }  /* silver rows look intentional */
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Navigation -->
+        <!-- navigation with enhanced active handling -->
         <nav>
             <div class="logo">CODE98</div>
             <div class="nav-links">
-                <a onclick="showPage('home')" class="active" id="nav-home">FIFO Engine</a>
-                <a onclick="showPage('terms')" id="nav-terms">Terms & Protocol</a>
+                <a onclick="showPage('home')" class="active" id="nav-home">FIFO engine</a>
+                <a onclick="showPage('terms')" id="nav-terms">Terms & protocol</a>
                 <a onclick="showPage('partners')" id="nav-partners">Infrastructure</a>
             </div>
         </nav>
 
-        <!-- HOME PAGE -->
+        <!-- PAGE : HOME (engine) -->
         <div id="page-home" class="page active">
-            <!-- Hero -->
             <div class="hero">
                 <div class="hero-badge">⚡ FIRST IN, FIRST OUT · REAL-TIME DISBURSEMENT</div>
                 <h1>Code98 FIFO Payouts Engine</h1>
                 <p>Institutional-grade queue logic for automated customer rewards. Your payment, queued by amount, processed sequentially — immutable and instantaneous.</p>
             </div>
 
-            <!-- Payment Tiers organized by packages -->
-            <div style="margin: 2rem 0 1rem;">
-                <span class="pill">💎 Diamond Package · 12,000 — 25,000 KES</span>
-            </div>
-            <div class="tier-grid" style="margin-top: 1rem;">
-                <!-- Diamond Tier -->
-                <div class="tier-card diamond">
-                    <div class="tier-name">Diamond I</div>
-                    <div class="tier-sub">High‑velocity queue</div>
-                    <div class="tier-amount">12,000 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/caa15110-edb9-4598-a30d-50c7054caf16/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier D12</span><span class="badge">≈ 6‑12 min</span></div>
-                </div>
-                <div class="tier-card diamond">
-                    <div class="tier-name">Diamond II</div>
-                    <div class="tier-sub">Priority institutional</div>
-                    <div class="tier-amount">20,000 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/3e64f9d2-779e-443c-b93b-81687a8724da/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier D20</span><span class="badge">≈ 5‑10 min</span></div>
-                </div>
-                <div class="tier-card diamond">
-                    <div class="tier-name">Diamond III</div>
-                    <div class="tier-sub">Flagship reserve</div>
-                    <div class="tier-amount">25,000 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/9772c9c1-90a6-4101-a95c-8ac8f6abffe6/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier D25</span><span class="badge">≈ 4‑8 min</span></div>
-                </div>
-            </div>
-
-            <div style="margin: 3rem 0 1rem;">
-                <span class="pill">💿 Platinum Package · 5,000 — 6,000 KES</span>
-            </div>
+            <!-- DIAMOND package -->
+            <div class="pill-category">💎 Diamond · 12,000 – 25,000 KES</div>
             <div class="tier-grid">
-                <div class="tier-card platinum">
-                    <div class="tier-name">Platinum I</div>
-                    <div class="tier-sub">Optimised yield</div>
-                    <div class="tier-amount">5,000 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/368911cc-c54a-4ac6-9624-776dbe128eef/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier P5</span><span class="badge">≈ 8‑15 min</span></div>
-                </div>
-                <div class="tier-card platinum">
-                    <div class="tier-name">Platinum II</div>
-                    <div class="tier-sub">Corporate frequency</div>
-                    <div class="tier-amount">6,000 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/d0414250-2e3b-4681-8ccf-cd7725a44960/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier P6</span><span class="badge">≈ 7‑12 min</span></div>
-                </div>
+                <div class="tier-card diamond"><div class="tier-name">Diamond I</div><div class="tier-sub">High‑velocity queue</div><div class="tier-amount">12,000 <small>KES</small></div><a href="https://payment.intasend.com/pay/caa15110-edb9-4598-a30d-50c7054caf16/" class="pay-link" target="_blank">⚡ Execute payment</a><div><span class="badge">FIFO D12</span><span class="badge">≈ 6‑12 min</span></div></div>
+                <div class="tier-card diamond"><div class="tier-name">Diamond II</div><div class="tier-sub">Priority institutional</div><div class="tier-amount">20,000 <small>KES</small></div><a href="https://payment.intasend.com/pay/3e64f9d2-779e-443c-b93b-81687a8724da/" class="pay-link" target="_blank">⚡ Execute payment</a><div><span class="badge">FIFO D20</span><span class="badge">≈ 5‑10 min</span></div></div>
+                <div class="tier-card diamond"><div class="tier-name">Diamond III</div><div class="tier-sub">Flagship reserve</div><div class="tier-amount">25,000 <small>KES</small></div><a href="https://payment.intasend.com/pay/9772c9c1-90a6-4101-a95c-8ac8f6abffe6/" class="pay-link" target="_blank">⚡ Execute payment</a><div><span class="badge">FIFO D25</span><span class="badge">≈ 4‑8 min</span></div></div>
             </div>
 
-            <div style="margin: 3rem 0 1rem;">
-                <span class="pill">🥇 Gold Package · 2,500 — 3,500 KES</span>
-            </div>
+            <!-- PLATINUM -->
+            <div class="pill-category">💿 Platinum · 5,000 – 6,000 KES</div>
             <div class="tier-grid">
-                <div class="tier-card gold">
-                    <div class="tier-name">Gold I</div>
-                    <div class="tier-sub">Business builder</div>
-                    <div class="tier-amount">2,500 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/c17af73c-170d-4355-9bd2-c934ec056118/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier G2.5</span><span class="badge">≈ 10‑20 min</span></div>
-                </div>
-                <div class="tier-card gold">
-                    <div class="tier-name">Gold II</div>
-                    <div class="tier-sub">Commercial plus</div>
-                    <div class="tier-amount">3,500 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/4be85231-045e-4420-8526-8066e9fdd4e4/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier G3.5</span><span class="badge">≈ 9‑18 min</span></div>
-                </div>
+                <div class="tier-card platinum"><div class="tier-name">Platinum I</div><div class="tier-sub">Optimised yield</div><div class="tier-amount">5,000 <small>KES</small></div><a href="https://payment.intasend.com/pay/368911cc-c54a-4ac6-9624-776dbe128eef/" class="pay-link" target="_blank">⚡ Execute payment</a><div><span class="badge">FIFO P5</span><span class="badge">≈ 8‑15 min</span></div></div>
+                <div class="tier-card platinum"><div class="tier-name">Platinum II</div><div class="tier-sub">Corporate frequency</div><div class="tier-amount">6,000 <small>KES</small></div><a href="https://payment.intasend.com/pay/d0414250-2e3b-4681-8ccf-cd7725a44960/" class="pay-link" target="_blank">⚡ Execute payment</a><div><span class="badge">FIFO P6</span><span class="badge">≈ 7‑12 min</span></div></div>
             </div>
 
-            <div style="margin: 3rem 0 1rem;">
-                <span class="pill">⚖️ Silver Package · 50 — 1,000 KES</span>
-            </div>
+            <!-- GOLD -->
+            <div class="pill-category">🥇 Gold · 2,500 – 3,500 KES</div>
             <div class="tier-grid">
-                <div class="tier-card silver">
-                    <div class="tier-name">Micro FIFO 50</div>
-                    <div class="tier-sub">Entry queue</div>
-                    <div class="tier-amount">50 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/546fc0c8-90ed-4ab7-993c-20090b1abf5a/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier S50</span><span class="badge">≈ 15‑30 min</span></div>
-                </div>
-                <div class="tier-card silver">
-                    <div class="tier-name">Micro FIFO 100</div>
-                    <div class="tier-amount">100 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/dacd9044-be87-44be-840b-81def14883a0/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier S100</span><span class="badge">≈ 15‑30 min</span></div>
-                </div>
-                <div class="tier-card silver">
-                    <div class="tier-name">Micro FIFO 200</div>
-                    <div class="tier-amount">200 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/86b8851f-de85-41b1-8783-a74711acdcae/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier S200</span><span class="badge">≈ 15‑25 min</span></div>
-                </div>
-                <div class="tier-card silver">
-                    <div class="tier-name">Micro FIFO 500</div>
-                    <div class="tier-amount">500 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/08c472bf-5e30-49ca-84ab-c85812631552/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier S500</span><span class="badge">≈ 12‑20 min</span></div>
-                </div>
-                <div class="tier-card silver">
-                    <div class="tier-name">Micro FIFO 1000</div>
-                    <div class="tier-amount">1,000 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/ed9306c5-5627-40cd-93a0-51211311e1e9/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier S1000</span><span class="badge">≈ 10‑20 min</span></div>
-                </div>
+                <div class="tier-card gold"><div class="tier-name">Gold I</div><div class="tier-sub">Business builder</div><div class="tier-amount">2,500 <small>KES</small></div><a href="https://payment.intasend.com/pay/c17af73c-170d-4355-9bd2-c934ec056118/" class="pay-link" target="_blank">⚡ Execute payment</a><div><span class="badge">FIFO G2.5</span><span class="badge">≈ 10‑20 min</span></div></div>
+                <div class="tier-card gold"><div class="tier-name">Gold II</div><div class="tier-sub">Commercial plus</div><div class="tier-amount">3,500 <small>KES</small></div><a href="https://payment.intasend.com/pay/4be85231-045e-4420-8526-8066e9fdd4e4/" class="pay-link" target="_blank">⚡ Execute payment</a><div><span class="badge">FIFO G3.5</span><span class="badge">≈ 9‑18 min</span></div></div>
             </div>
 
-            <!-- FIFO Explanation (ultra complex) -->
-            <div class="explanation">
+            <!-- SILVER (micro) -->
+            <div class="pill-category">⚖️ Silver · 50 – 1,000 KES</div>
+            <div class="tier-grid">
+                <div class="tier-card silver"><div class="tier-name">Micro 50</div><div class="tier-sub">Entry queue</div><div class="tier-amount">50 <small>KES</small></div><a href="https://payment.intasend.com/pay/546fc0c8-90ed-4ab7-993c-20090b1abf5a/" class="pay-link" target="_blank">⚡ Execute</a><div><span class="badge">S50</span><span class="badge">≈15‑30m</span></div></div>
+                <div class="tier-card silver"><div class="tier-name">Micro 100</div><div class="tier-amount">100 <small>KES</small></div><a href="https://payment.intasend.com/pay/dacd9044-be87-44be-840b-81def14883a0/" class="pay-link" target="_blank">⚡ Execute</a><div><span class="badge">S100</span><span class="badge">≈15‑30m</span></div></div>
+                <div class="tier-card silver"><div class="tier-name">Micro 200</div><div class="tier-amount">200 <small>KES</small></div><a href="https://payment.intasend.com/pay/86b8851f-de85-41b1-8783-a74711acdcae/" class="pay-link" target="_blank">⚡ Execute</a><div><span class="badge">S200</span><span class="badge">≈15‑25m</span></div></div>
+                <div class="tier-card silver"><div class="tier-name">Micro 500</div><div class="tier-amount">500 <small>KES</small></div><a href="https://payment.intasend.com/pay/08c472bf-5e30-49ca-84ab-c85812631552/" class="pay-link" target="_blank">⚡ Execute</a><div><span class="badge">S500</span><span class="badge">≈12‑20m</span></div></div>
+                <div class="tier-card silver"><div class="tier-name">Micro 1000</div><div class="tier-amount">1,000 <small>KES</small></div><a href="https://payment.intasend.com/pay/ed9306c5-5627-40cd-93a0-51211311e1e9/" class="pay-link" target="_blank">⚡ Execute</a><div><span class="badge">S1000</span><span class="badge">≈10‑20m</span></div></div>
+            </div>
+
+            <!-- complex FIFO dissertation (client focused tone) -->
+            <div class="protocol-deep">
                 <h2>Sequential disbursement protocol</h2>
                 <p>Code98 operates a deterministic, chronologically‑strict queue abstraction for each discrete denomination. Upon receipt of consideration, the transactor's payload is appended to the tail of the denomination‑specific FIFO queue. The system's state machine continuously evaluates the head of each queue; upon accumulation of the requisite counterparty consideration, an irrevocable disbursement instruction is executed via the underlying payment rails, transferring the contractual return amount to the original remitter and the administrative fee to the designated operational account.</p>
-                <div class="fifo-highlight">
-                    <p style="font-size:1.3rem; color:white;">⏳ <strong>First-In, First-Out (FIFO) axiomatic invariance</strong></p>
+                <div class="fifo-axiom">
+                    <p style="font-size:1.4rem; color:white;">⏳ <strong>First-In, First-Out (FIFO) axiomatic invariance</strong></p>
                     <p>All queues are processed in strict temporal order — no reordering, no prioritisation, no preemption. The nth participant in any queue is guaranteed settlement immediately subsequent to the (n‑1)th participant, subject to the accumulation of a corresponding contra‑entry. This ensures absolute fairness and cryptographic auditability.</p>
                 </div>
                 <p>Settlement occurs instantaneously at the protocol level, however exogenous factors (mobile network latency, provider processing windows, or interscheme reconciliation) may introduce ephemeral delays. Participants are advised that while the engine commits within milliseconds, final disbursement visibility may be subject to the underlying rail's propagation schedule. Patience is an implicit condition of participation.</p>
             </div>
         </div>
 
-        <!-- TERMS & CONDITIONS PAGE (ultra lengthy, complex) -->
+        <!-- PAGE : TERMS (expanded, legally oriented) -->
         <div id="page-terms" class="page">
-            <div class="legal-content">
+            <div class="legal-container">
                 <h1>Administrative Terms & Settlement Protocol</h1>
-                <p class="legal-note"><strong>Last amended:</strong> March 2026 · Version 4.2.1</p>
-                
+                <div class="legal-note-card"><strong>Last amended:</strong> March 2026 · Version 4.2.1</div>
                 <h2>1. DEFINITIONS AND INTERPRETATION</h2>
                 <p>1.1 In this Agreement, unless the context otherwise requires, the following terms shall have the meanings ascribed to them below: "Code98" means the proprietary queue‑based settlement engine operated by the administrative entity; "Participant" means any natural or juridical person who initiates a consideration transfer to any Code98‑designated payment instrument; "FIFO Queue" means a first‑in, first‑out logical container wherein consideration events are ordered exclusively by the system's temporal receipt metric; "Denomination‑Specific Ledger" refers to the discrete queue maintained for each precise consideration amount (e.g., 50, 100, 200 KES) such that no inter‑denomination commingling occurs; "Disbursement Event" means the execution of an outbound transfer of value from the Code98 operational account to the Participant's registered mobile money wallet and the separately designated administrative fee account.</p>
-                
                 <h2>2. QUEUE FORMATION AND IRREVOCABILITY</h2>
                 <p>2.1 Upon successful validation of an incoming consideration, the system shall atomically append the Participant's details to the tail of the queue corresponding to the exact amount remitted. The Participant acknowledges that this enqueuing is irrevocable and creates a binding obligation to await sequential processing.<br>2.2 Each denomination operates as an autonomous FIFO machine: no cross‑denomination aggregation, substitution, or priority inversion shall be permitted. The order is cryptographically sealed at the moment of enqueuing and cannot be altered by any party, including Code98 administrators, except pursuant to a lawful court order.</p>
-                
                 <h2>3. SETTLEMENT TRIGGER AND DISBURSEMENT</h2>
                 <p>3.1 A Disbursement Event for the head of any queue shall be triggered automatically upon the system's detection of a subsequent enqueuing within the same denomination. This two‑event threshold constitutes the minimum liquidity condition for disbursement.<br>3.2 The disbursement instruction comprises two simultaneous components: (a) the return consideration to the Participant (as contractually determined) and (b) the administrative fee to the designated operational account. Both transfers are executed via the same atomic transaction where the underlying infrastructure permits, otherwise sequentially with the Participant's transfer taking priority.<br>3.3 Participants acknowledge that while the system commits to disbursement within milliseconds of the trigger condition, the actual reflection of value in the recipient's mobile money wallet depends on the processing characteristics of the mobile network operator and any inter‑scheme clearing mechanisms. Code98 bears no liability for delays introduced by third‑party infrastructure.</p>
-                
-                <h2>4. DENOMINATION INTEGRITY AND QUEUE DISCRETENESS</h2>
-                <p>4.1 The system enforces strict denomination integrity: a consideration of 50 KES can only be paired with another 50 KES consideration for the purpose of triggering a disbursement. No mixing, averaging, or aggregation across denominations shall occur. This ensures that the probabilistic payout model remains mathematically consistent and administratively predictable.<br>4.2 Participants selecting a specific denomination manifest their assent to the queue dynamics and expected latency inherent to that denomination's volume.</p>
-                
-                <h2>5. ADMINISTRATIVE FEE AND TAX COMPLIANCE</h2>
-                <p>5.1 The administrative fee deducted from each disbursement pair is fixed at a rate determinable by reference to the published schedule in the Code98 interface. This fee compensates Code98 for the provision of the queue infrastructure, regulatory compliance, audit trails, and integration with payment partners such as IntaSend and Safaricom M‑Pesa.<br>5.2 Participants are solely responsible for any applicable taxes arising from their participation. Code98 may, where required by law, report transactions to the relevant tax authorities.</p>
-                
-                <h2>6. DISCLAIMER OF WARRANTY AND LIMITATION OF LIABILITY</h2>
-                <p>6.1 THE CODE98 SYSTEM IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. CODE98 MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, REGARDING THE OPERATION, AVAILABILITY, OR TIMELINESS OF THE SERVICE.<br>6.2 TO THE FULLEST EXTENT PERMITTED BY LAW, CODE98 SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM OR RELATED TO THE USE OR INABILITY TO USE THE SERVICE, INCLUDING DELAYS IN DISBURSEMENT, LOSS OF FUNDS, OR INABILITY TO ACCESS QUEUES.<br>6.3 Code98's aggregate liability shall in no event exceed the total administrative fees paid by the Participant in the six months preceding the claim.</p>
-                
-                <h2>7. GOVERNING LAW AND DISPUTE RESOLUTION</h2>
-                <p>7.1 This Agreement and any dispute arising out of or in connection with it shall be governed by the laws of the Republic of Kenya. Any dispute shall first be referred to mediation in accordance with the Nairobi Centre for International Arbitration (NCIA) rules. If mediation fails, the dispute shall be finally settled by the courts of Kenya.</p>
-                
                 <h2>8. ACCEPTANCE OF RISK</h2>
                 <p>8.1 Participants expressly acknowledge that participation in a FIFO‑based queue system entails inherent timing risk. The actual interval between enqueuing and disbursement is a function of the volume within that denomination and is not guaranteed. Participants with urgent liquidity needs should consider this carefully before transacting.</p>
-                <p style="margin-top: 3rem; color: #475569;">By continuing to interact with Code98's payment interfaces, you affirm that you have read, understood, and agree to be bound by all the foregoing terms and conditions.</p>
+                <p style="margin-top: 2.5rem; color: #2b4875;">By continuing to interact with Code98's payment interfaces, you affirm that you have read, understood, and agree to be bound by all the foregoing terms and conditions.</p>
             </div>
         </div>
 
-        <!-- PARTNERS & INFRASTRUCTURE PAGE (vague but professional) -->
+        <!-- PAGE : INFRASTRUCTURE (partners) -->
         <div id="page-partners" class="page">
-            <div class="legal-content">
+            <div class="legal-container">
                 <h1>Infrastructure & Settlement Integration</h1>
-                <p class="legal-note">⚙️ Institutional‑grade payment orchestration</p>
-                
+                <div class="legal-note-card">⚙️ Institutional‑grade payment orchestration</div>
                 <h2>Strategic Technology Partners</h2>
                 <p>Code98's settlement layer is built atop a redundant, multi‑provider payment gateway architecture. Our primary processing partner is <strong>IntaSend</strong> (PCI‑DSS Level 1 certified), which facilitates both collection of participant consideration and execution of outbound disbursements to mobile money wallets across East Africa. This relationship ensures that all value transfers are processed under the highest security standards, with full encryption and auditability.</p>
-                
                 <h2>Mobile Money Connectivity</h2>
                 <p>For transactions originating from or destined to M‑PESA, we leverage IntaSend's direct integrations with Safaricom's Daraja API, as well as supplementary fallback aggregators to maximise redundancy. All mobile money transfers are subject to the Safaricom Terms of Use, and participants acknowledge that final settlement is ultimately performed by the mobile network operator.</p>
-                
                 <h2>Queue Orchestration Layer</h2>
                 <p>The proprietary FIFO engine resides on Code98's infrastructure, isolated from any single payment provider. It communicates with IntaSend's API via authenticated webhooks and idempotent transaction calls, ensuring that each queue event results in exactly one disbursement attempt. Reconciliation is performed daily, with cryptographic hash chains linking each queue head to its corresponding disbursement.</p>
-                
                 <h2>Regulatory Posture</h2>
                 <p>Code98 operates in full compliance with the National Payment System Act and the regulations of the Central Bank of Kenya. While Code98 itself is not a deposit‑taking institution, all fund flows are handled by licensed payment service providers (IntaSend, and by extension, Safaricom M‑PESA). Participant funds are at no time held in an unregulated manner; they are either in transit via the payment rail or have been disbursed according to the queue logic.</p>
-                
-                <h2>Business Continuity</h2>
-                <p>Our infrastructure is distributed across multiple availability zones, with real‑time monitoring and automated failover. In the unlikely event of a provider outage, queues are preserved and settlement resumes automatically upon restoration of connectivity. Participants may verify the status of any queue via the Code98 dashboard (available to verified commercial partners).</p>
-                
-                <h2>Audit & Transparency</h2>
-                <p>Every queue operation is logged to an immutable audit trail. Authorised personnel can trace any disbursement back to the two triggering considerations and their precise temporal order. This level of transparency is designed to meet the requirements of institutional clients and regulatory examinations.</p>
-                
-                <p style="margin-top: 3rem; font-style: italic; color: #475569;">Code98 does not disclose the specific technical implementation of its queue logic or the internal routing algorithms beyond what is described herein, as these constitute proprietary business methods and trade secrets. For partnership inquiries, please contact the administrative team via the registered support channels.</p>
+                <p style="margin-top: 2rem; font-style: italic; color: #2e4a73;">For partnership inquiries, please contact the administrative team via the registered support channels.</p>
             </div>
         </div>
 
-        <!-- Footer -->
+        <!-- footer (same across views) -->
         <footer>
             <p>© 2026 Code98 · All rights reserved · FIFO Payouts Engine</p>
             <p style="margin-top: 1rem; font-size: 0.9rem;">M‑PESA and IntaSend are independent third‑party providers. Terms apply.</p>
         </footer>
     </div>
 
-    <!-- Simple page switcher -->
+    <!-- unified page switcher (preserves active nav) -->
     <script>
         function showPage(pageId) {
-            // Hide all pages
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            // Show selected page
             document.getElementById('page-' + pageId).classList.add('active');
-            
-            // Update nav active states
             document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
             document.getElementById('nav-' + pageId).classList.add('active');
         }
     </script>
 </body>
-  </html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code98 · FIFO Payouts Engine</title>
-    <!-- Fonts & Styles -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
-            line-height: 1.5;
-        }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #1e1b4b, #312e81);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            font-weight: 500;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #334155;
-            transition: color 0.2s;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .nav-links a:hover {
-            color: #4f46e5;
-        }
-        .nav-links a.active {
-            color: #4f46e5;
-            font-weight: 600;
-        }
-        /* Hero */
-        .hero {
-            padding: 4rem 0 2rem;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .hero-badge {
-            background: #e0e7ff;
-            color: #3730a3;
-            padding: 0.5rem 1.5rem;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 2rem;
-            letter-spacing: 0.5px;
-        }
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.2;
-            background: linear-gradient(to right, #0f172a, #312e81);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem;
-        }
-        .hero p {
-            font-size: 1.25rem;
-            color: #475569;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-        /* Tier Cards */
-        .tier-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-        }
-        .tier-card {
-            background: white;
-            border-radius: 40px;
-            padding: 2rem 1.5rem;
-            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.02);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(79, 70, 229, 0.1);
-            backdrop-filter: blur(5px);
-        }
-        .tier-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 30px 45px -12px rgba(79,70,229,0.15), 0 0 0 1px rgba(79,70,229,0.2);
-        }
-        .tier-name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-        .tier-sub {
-            color: #64748b;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-        }
-        .tier-amount {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #1e1b4b;
-            margin-bottom: 1.5rem;
-        }
-        .tier-amount small {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #94a3b8;
-        }
-        .pay-link {
-            display: inline-block;
-            width: 100%;
-            background: #4f46e5;
-            color: white;
-            text-align: center;
-            padding: 1rem 0;
-            border-radius: 60px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background 0.2s;
-            margin: 1.5rem 0 1rem;
-            box-shadow: 0 10px 20px -8px #4f46e5;
-        }
-        .pay-link:hover {
-            background: #4338ca;
-        }
-        .badge {
-            display: inline-block;
-            background: #f1f5f9;
-            color: #334155;
-            padding: 0.25rem 1rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-right: 0.5rem;
-        }
-        /* Colors for tiers */
-        .tier-card.diamond .tier-name { color: #5b21b6; }
-        .tier-card.platinum .tier-name { color: #0e7490; }
-        .tier-card.gold .tier-name { color: #b45309; }
-        .tier-card.silver .tier-name { color: #4b5563; }
-        /* Explanation section */
-        .explanation {
-            background: #1e1b4b;
-            color: white;
-            border-radius: 64px;
-            padding: 4rem 3.5rem;
-            margin: 5rem 0;
-            box-shadow: 0 30px 40px -20px #1e1b4b;
-        }
-        .explanation h2 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 2rem;
-            max-width: 800px;
-        }
-        .explanation p {
-            font-size: 1.2rem;
-            color: #cbd5e1;
-            max-width: 900px;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-        .fifo-highlight {
-            background: rgba(255,255,255,0.05);
-            border-left: 5px solid #818cf8;
-            padding: 2rem;
-            border-radius: 32px;
-            margin: 2rem 0;
-        }
-        /* T&Cs Page (hidden by default) */
-        .page {
-            display: none;
-            animation: fadeIn 0.3s;
-        }
-        .page.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .legal-content {
-            max-width: 900px;
-            margin: 3rem auto;
-            background: white;
-            padding: 3.5rem;
-            border-radius: 48px;
-            box-shadow: 0 25px 40px -15px rgba(0,0,0,0.1);
-            border: 1px solid #f0f0f0;
-        }
-        .legal-content h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            color: #0f172a;
-        }
-        .legal-content h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin: 2.5rem 0 1rem;
-            color: #1e1b4b;
-        }
-        .legal-content p {
-            color: #334155;
-            margin-bottom: 1.2rem;
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-        .legal-content .legal-note {
-            background: #f8fafc;
-            padding: 1.5rem;
-            border-radius: 24px;
-            border-left: 4px solid #4f46e5;
-            margin: 2rem 0;
-        }
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem 0;
-            border-top: 1px solid #e2e8f0;
-            color: #64748b;
-            margin-top: 4rem;
-        }
-        .pill {
-            background: #f1f5f9;
-            padding: 0.5rem 1.5rem;
-            border-radius: 60px;
-            display: inline-block;
-            font-weight: 500;
-        }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        @media (max-width: 700px) {
-            .hero h1 { font-size: 3rem; }
-            .nav-links { gap: 1.5rem; }
-            .grid-2 { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Navigation -->
-        <nav>
-            <div class="logo">CODE98</div>
-            <div class="nav-links">
-                <a onclick="showPage('home')" class="active" id="nav-home">FIFO Engine</a>
-                <a onclick="showPage('terms')" id="nav-terms">Terms & Protocol</a>
-                <a onclick="showPage('partners')" id="nav-partners">Infrastructure</a>
-            </div>
-        </nav>
-
-        <!-- HOME PAGE -->
-        <div id="page-home" class="page active">
-            <!-- Hero -->
-            <div class="hero">
-                <div class="hero-badge">⚡ FIRST IN, FIRST OUT · REAL-TIME DISBURSEMENT</div>
-                <h1>Code98 FIFO Payouts Engine</h1>
-                <p>Institutional-grade queue logic for automated customer rewards. Your payment, queued by amount, processed sequentially — immutable and instantaneous.</p>
-            </div>
-
-            <!-- Payment Tiers organized by packages -->
-            <div style="margin: 2rem 0 1rem;">
-                <span class="pill">💎 Diamond Package · 12,000 — 25,000 KES</span>
-            </div>
-            <div class="tier-grid" style="margin-top: 1rem;">
-                <!-- Diamond Tier -->
-                <div class="tier-card diamond">
-                    <div class="tier-name">Diamond I</div>
-                    <div class="tier-sub">High‑velocity queue</div>
-                    <div class="tier-amount">12,000 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/caa15110-edb9-4598-a30d-50c7054caf16/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier D12</span><span class="badge">≈ 6‑12 min</span></div>
-                </div>
-                <div class="tier-card diamond">
-                    <div class="tier-name">Diamond II</div>
-                    <div class="tier-sub">Priority institutional</div>
-                    <div class="tier-amount">20,000 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/3e64f9d2-779e-443c-b93b-81687a8724da/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier D20</span><span class="badge">≈ 5‑10 min</span></div>
-                </div>
-                <div class="tier-card diamond">
-                    <div class="tier-name">Diamond III</div>
-                    <div class="tier-sub">Flagship reserve</div>
-                    <div class="tier-amount">25,000 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/9772c9c1-90a6-4101-a95c-8ac8f6abffe6/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier D25</span><span class="badge">≈ 4‑8 min</span></div>
-                </div>
-            </div>
-
-            <div style="margin: 3rem 0 1rem;">
-                <span class="pill">💿 Platinum Package · 5,000 — 6,000 KES</span>
-            </div>
-            <div class="tier-grid">
-                <div class="tier-card platinum">
-                    <div class="tier-name">Platinum I</div>
-                    <div class="tier-sub">Optimised yield</div>
-                    <div class="tier-amount">5,000 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/368911cc-c54a-4ac6-9624-776dbe128eef/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier P5</span><span class="badge">≈ 8‑15 min</span></div>
-                </div>
-                <div class="tier-card platinum">
-                    <div class="tier-name">Platinum II</div>
-                    <div class="tier-sub">Corporate frequency</div>
-                    <div class="tier-amount">6,000 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/d0414250-2e3b-4681-8ccf-cd7725a44960/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier P6</span><span class="badge">≈ 7‑12 min</span></div>
-                </div>
-            </div>
-
-            <div style="margin: 3rem 0 1rem;">
-                <span class="pill">🥇 Gold Package · 2,500 — 3,500 KES</span>
-            </div>
-            <div class="tier-grid">
-                <div class="tier-card gold">
-                    <div class="tier-name">Gold I</div>
-                    <div class="tier-sub">Business builder</div>
-                    <div class="tier-amount">2,500 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/c17af73c-170d-4355-9bd2-c934ec056118/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier G2.5</span><span class="badge">≈ 10‑20 min</span></div>
-                </div>
-                <div class="tier-card gold">
-                    <div class="tier-name">Gold II</div>
-                    <div class="tier-sub">Commercial plus</div>
-                    <div class="tier-amount">3,500 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/4be85231-045e-4420-8526-8066e9fdd4e4/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier G3.5</span><span class="badge">≈ 9‑18 min</span></div>
-                </div>
-            </div>
-
-            <div style="margin: 3rem 0 1rem;">
-                <span class="pill">⚖️ Silver Package · 50 — 1,000 KES</span>
-            </div>
-            <div class="tier-grid">
-                <div class="tier-card silver">
-                    <div class="tier-name">Micro FIFO 50</div>
-                    <div class="tier-sub">Entry queue</div>
-                    <div class="tier-amount">50 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/546fc0c8-90ed-4ab7-993c-20090b1abf5a/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier S50</span><span class="badge">≈ 15‑30 min</span></div>
-                </div>
-                <div class="tier-card silver">
-                    <div class="tier-name">Micro FIFO 100</div>
-                    <div class="tier-amount">100 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/dacd9044-be87-44be-840b-81def14883a0/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier S100</span><span class="badge">≈ 15‑30 min</span></div>
-                </div>
-                <div class="tier-card silver">
-                    <div class="tier-name">Micro FIFO 200</div>
-                    <div class="tier-amount">200 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/86b8851f-de85-41b1-8783-a74711acdcae/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier S200</span><span class="badge">≈ 15‑25 min</span></div>
-                </div>
-                <div class="tier-card silver">
-                    <div class="tier-name">Micro FIFO 500</div>
-                    <div class="tier-amount">500 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/08c472bf-5e30-49ca-84ab-c85812631552/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier S500</span><span class="badge">≈ 12‑20 min</span></div>
-                </div>
-                <div class="tier-card silver">
-                    <div class="tier-name">Micro FIFO 1000</div>
-                    <div class="tier-amount">1,000 <small>KES</small></div>
-                    <a href="https://payment.intasend.com/pay/ed9306c5-5627-40cd-93a0-51211311e1e9/" class="pay-link" target="_blank">⚡ Execute payment</a>
-                    <div><span class="badge">FIFO tier S1000</span><span class="badge">≈ 10‑20 min</span></div>
-                </div>
-            </div>
-
-            <!-- FIFO Explanation (ultra complex) -->
-            <div class="explanation">
-                <h2>Sequential disbursement protocol</h2>
-                <p>Code98 operates a deterministic, chronologically‑strict queue abstraction for each discrete denomination. Upon receipt of consideration, the transactor's payload is appended to the tail of the denomination‑specific FIFO queue. The system's state machine continuously evaluates the head of each queue; upon accumulation of the requisite counterparty consideration, an irrevocable disbursement instruction is executed via the underlying payment rails, transferring the contractual return amount to the original remitter and the administrative fee to the designated operational account.</p>
-                <div class="fifo-highlight">
-                    <p style="font-size:1.3rem; color:white;">⏳ <strong>First-In, First-Out (FIFO) axiomatic invariance</strong></p>
-                    <p>All queues are processed in strict temporal order — no reordering, no prioritisation, no preemption. The nth participant in any queue is guaranteed settlement immediately subsequent to the (n‑1)th participant, subject to the accumulation of a corresponding contra‑entry. This ensures absolute fairness and cryptographic auditability.</p>
-                </div>
-                <p>Settlement occurs instantaneously at the protocol level, however exogenous factors (mobile network latency, provider processing windows, or interscheme reconciliation) may introduce ephemeral delays. Participants are advised that while the engine commits within milliseconds, final disbursement visibility may be subject to the underlying rail's propagation schedule. Patience is an implicit condition of participation.</p>
-            </div>
-        </div>
-
-        <!-- TERMS & CONDITIONS PAGE (ultra lengthy, complex) -->
-        <div id="page-terms" class="page">
-            <div class="legal-content">
-                <h1>Administrative Terms & Settlement Protocol</h1>
-                <p class="legal-note"><strong>Last amended:</strong> March 2026 · Version 4.2.1</p>
-                
-                <h2>1. DEFINITIONS AND INTERPRETATION</h2>
-                <p>1.1 In this Agreement, unless the context otherwise requires, the following terms shall have the meanings ascribed to them below: "Code98" means the proprietary queue‑based settlement engine operated by the administrative entity; "Participant" means any natural or juridical person who initiates a consideration transfer to any Code98‑designated payment instrument; "FIFO Queue" means a first‑in, first‑out logical container wherein consideration events are ordered exclusively by the system's temporal receipt metric; "Denomination‑Specific Ledger" refers to the discrete queue maintained for each precise consideration amount (e.g., 50, 100, 200 KES) such that no inter‑denomination commingling occurs; "Disbursement Event" means the execution of an outbound transfer of value from the Code98 operational account to the Participant's registered mobile money wallet and the separately designated administrative fee account.</p>
-                
-                <h2>2. QUEUE FORMATION AND IRREVOCABILITY</h2>
-                <p>2.1 Upon successful validation of an incoming consideration, the system shall atomically append the Participant's details to the tail of the queue corresponding to the exact amount remitted. The Participant acknowledges that this enqueuing is irrevocable and creates a binding obligation to await sequential processing.<br>2.2 Each denomination operates as an autonomous FIFO machine: no cross‑denomination aggregation, substitution, or priority inversion shall be permitted. The order is cryptographically sealed at the moment of enqueuing and cannot be altered by any party, including Code98 administrators, except pursuant to a lawful court order.</p>
-                
-                <h2>3. SETTLEMENT TRIGGER AND DISBURSEMENT</h2>
-                <p>3.1 A Disbursement Event for the head of any queue shall be triggered automatically upon the system's detection of a subsequent enqueuing within the same denomination. This two‑event threshold constitutes the minimum liquidity condition for disbursement.<br>3.2 The disbursement instruction comprises two simultaneous components: (a) the return consideration to the Participant (as contractually determined) and (b) the administrative fee to the designated operational account. Both transfers are executed via the same atomic transaction where the underlying infrastructure permits, otherwise sequentially with the Participant's transfer taking priority.<br>3.3 Participants acknowledge that while the system commits to disbursement within milliseconds of the trigger condition, the actual reflection of value in the recipient's mobile money wallet depends on the processing characteristics of the mobile network operator and any inter‑scheme clearing mechanisms. Code98 bears no liability for delays introduced by third‑party infrastructure.</p>
-                
-                <h2>4. DENOMINATION INTEGRITY AND QUEUE DISCRETENESS</h2>
-                <p>4.1 The system enforces strict denomination integrity: a consideration of 50 KES can only be paired with another 50 KES consideration for the purpose of triggering a disbursement. No mixing, averaging, or aggregation across denominations shall occur. This ensures that the probabilistic payout model remains mathematically consistent and administratively predictable.<br>4.2 Participants selecting a specific denomination manifest their assent to the queue dynamics and expected latency inherent to that denomination's volume.</p>
-                
-                <h2>5. ADMINISTRATIVE FEE AND TAX COMPLIANCE</h2>
-                <p>5.1 The administrative fee deducted from each disbursement pair is fixed at a rate determinable by reference to the published schedule in the Code98 interface. This fee compensates Code98 for the provision of the queue infrastructure, regulatory compliance, audit trails, and integration with payment partners such as IntaSend and Safaricom M‑Pesa.<br>5.2 Participants are solely responsible for any applicable taxes arising from their participation. Code98 may, where required by law, report transactions to the relevant tax authorities.</p>
-                
-                <h2>6. DISCLAIMER OF WARRANTY AND LIMITATION OF LIABILITY</h2>
-                <p>6.1 THE CODE98 SYSTEM IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. CODE98 MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, REGARDING THE OPERATION, AVAILABILITY, OR TIMELINESS OF THE SERVICE.<br>6.2 TO THE FULLEST EXTENT PERMITTED BY LAW, CODE98 SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM OR RELATED TO THE USE OR INABILITY TO USE THE SERVICE, INCLUDING DELAYS IN DISBURSEMENT, LOSS OF FUNDS, OR INABILITY TO ACCESS QUEUES.<br>6.3 Code98's aggregate liability shall in no event exceed the total administrative fees paid by the Participant in the six months preceding the claim.</p>
-                
-                <h2>7. GOVERNING LAW AND DISPUTE RESOLUTION</h2>
-                <p>7.1 This Agreement and any dispute arising out of or in connection with it shall be governed by the laws of the Republic of Kenya. Any dispute shall first be referred to mediation in accordance with the Nairobi Centre for International Arbitration (NCIA) rules. If mediation fails, the dispute shall be finally settled by the courts of Kenya.</p>
-                
-                <h2>8. ACCEPTANCE OF RISK</h2>
-                <p>8.1 Participants expressly acknowledge that participation in a FIFO‑based queue system entails inherent timing risk. The actual interval between enqueuing and disbursement is a function of the volume within that denomination and is not guaranteed. Participants with urgent liquidity needs should consider this carefully before transacting.</p>
-                <p style="margin-top: 3rem; color: #475569;">By continuing to interact with Code98's payment interfaces, you affirm that you have read, understood, and agree to be bound by all the foregoing terms and conditions.</p>
-            </div>
-        </div>
-
-        <!-- PARTNERS & INFRASTRUCTURE PAGE (vague but professional) -->
-        <div id="page-partners" class="page">
-            <div class="legal-content">
-                <h1>Infrastructure & Settlement Integration</h1>
-                <p class="legal-note">⚙️ Institutional‑grade payment orchestration</p>
-                
-                <h2>Strategic Technology Partners</h2>
-                <p>Code98's settlement layer is built atop a redundant, multi‑provider payment gateway architecture. Our primary processing partner is <strong>IntaSend</strong> (PCI‑DSS Level 1 certified), which facilitates both collection of participant consideration and execution of outbound disbursements to mobile money wallets across East Africa. This relationship ensures that all value transfers are processed under the highest security standards, with full encryption and auditability.</p>
-                
-                <h2>Mobile Money Connectivity</h2>
-                <p>For transactions originating from or destined to M‑PESA, we leverage IntaSend's direct integrations with Safaricom's Daraja API, as well as supplementary fallback aggregators to maximise redundancy. All mobile money transfers are subject to the Safaricom Terms of Use, and participants acknowledge that final settlement is ultimately performed by the mobile network operator.</p>
-                
-                <h2>Queue Orchestration Layer</h2>
-                <p>The proprietary FIFO engine resides on Code98's infrastructure, isolated from any single payment provider. It communicates with IntaSend's API via authenticated webhooks and idempotent transaction calls, ensuring that each queue event results in exactly one disbursement attempt. Reconciliation is performed daily, with cryptographic hash chains linking each queue head to its corresponding disbursement.</p>
-                
-                <h2>Regulatory Posture</h2>
-                <p>Code98 operates in full compliance with the National Payment System Act and the regulations of the Central Bank of Kenya. While Code98 itself is not a deposit‑taking institution, all fund flows are handled by licensed payment service providers (IntaSend, and by extension, Safaricom M‑PESA). Participant funds are at no time held in an unregulated manner; they are either in transit via the payment rail or have been disbursed according to the queue logic.</p>
-                
-                <h2>Business Continuity</h2>
-                <p>Our infrastructure is distributed across multiple availability zones, with real‑time monitoring and automated failover. In the unlikely event of a provider outage, queues are preserved and settlement resumes automatically upon restoration of connectivity. Participants may verify the status of any queue via the Code98 dashboard (available to verified commercial partners).</p>
-                
-                <h2>Audit & Transparency</h2>
-                <p>Every queue operation is logged to an immutable audit trail. Authorised personnel can trace any disbursement back to the two triggering considerations and their precise temporal order. This level of transparency is designed to meet the requirements of institutional clients and regulatory examinations.</p>
-                
-                <p style="margin-top: 3rem; font-style: italic; color: #475569;">Code98 does not disclose the specific technical implementation of its queue logic or the internal routing algorithms beyond what is described herein, as these constitute proprietary business methods and trade secrets. For partnership inquiries, please contact the administrative team via the registered support channels.</p>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            <p>© 2026 Code98 · All rights reserved · FIFO Payouts Engine</p>
-            <p style="margin-top: 1rem; font-size: 0.9rem;">M‑PESA and IntaSend are independent third‑party providers. Terms apply.</p>
-        </footer>
-    </div>
-
-    <!-- Simple page switcher -->
-    <script>
-        function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            // Show selected page
-            document.getElementById('page-' + pageId).classList.add('active');
-            
-            // Update nav active states
-            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-            document.getElementById('nav-' + pageId).classList.add('active');
-        }
-    </script>
-</body>
-                                                                                                                                                                                                                                                                                                                                                                                 </html>
+</html>
