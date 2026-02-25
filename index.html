@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Code98 · queue engine</title>
+    <title>CODE 98 FIFO · Payouts Engine</title>
     <!-- Inter • system font • clean -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -331,7 +331,7 @@
 
         <!-- navigation (same three anchors, clean) -->
         <nav>
-            <div class="logo">CODE98</div>
+            <div class="logo">CODE 98</div>
             <div class="nav-links">
                 <a onclick="showPage('home')" class="active" id="nav-home">Engine</a>
                 <a onclick="showPage('terms')" id="nav-terms">Terms</a>
@@ -344,7 +344,7 @@
 
             <div class="hero">
                 <div class="hero-badge">⚡ QUEUE · STRICT ORDER · REAL‑TIME</div>
-                <h1>Code98 payout engine</h1>
+                <h1>CODE 98 Payout engine</h1>
                 <p>Institutional queue logic. No reordering, no preemption. Amount‑discrete FIFO.</p>
             </div>
 
@@ -463,7 +463,7 @@
             <!-- protocol explanation (complex, no acronym expansion) -->
             <div class="protocol-block">
                 <h2>strict‑order queue</h2>
-                <p>Code98 uses a deterministic, denomination‑isolated queue. Each incoming unit is appended to the tail of its exact amount bucket. A disbursement triggers atomically when the subsequent unit enters — head removed, settlement executed. invariant: the n-th participant settles immediately after the (n-1)-th. No reordering, no priority overrides.</p>
+                <p>CODE 98 uses a deterministic, denomination‑isolated queue. Each incoming unit is appended to the tail of its exact amount bucket. A disbursement triggers atomically when the subsequent unit enters — head removed, settlement executed. invariant: the n-th participant settles immediately after the (n-1)-th. No reordering, no priority overrides.</p>
                 <div class="invariant-line">
                     <p style="font-size:1.3rem;">⏳ invariant: first‑in, first‑out across every denomination.</p>
                     <p style="color:#b3cbff; margin-top:0.5rem;">cryptographic ordering, no inter‑denomination mixing. settlement finality depends on underlying rail propagation.</p>
@@ -478,11 +478,11 @@
                 <h1>Terms & queue protocol</h1>
                 <div class="legal-note"><strong>version 4.2.1 · March 2026</strong></div>
                 <h2>1. definitions</h2>
-                <p><strong>Code98</strong> – proprietary queue engine. <strong>Participant</strong> – any entity sending consideration to a Code98 instrument. <strong>Queue</strong> – strict temporal container per exact amount. <strong>Denomination‑specific ledger</strong> – discrete queue for each amount (e.g. 50,100,200). <strong>Disbursement</strong> – outbound transfer to participant's mobile wallet + fee to operational account.</p>
+                <p><strong>CODE 98</strong> – proprietary queue engine. <strong>Participant</strong> – any entity sending consideration to a CODE 98 instrument. <strong>Queue</strong> – strict temporal container per exact amount. <strong>Denomination‑specific ledger</strong> – discrete queue for each amount (e.g. 50,100,200). <strong>Disbursement</strong> – outbound transfer to participant's mobile wallet + fee to operational account.</p>
                 <h2>2. queue irreversibility</h2>
                 <p>Upon validation, participant is appended to the tail of the exact‑amount queue. Enqueuing is irrevocable. Each denomination is independent: no cross‑aggregation. order cryptographically sealed.</p>
                 <h2>3. trigger & settlement</h2>
-                <p>Disbursement for the head triggers automatically on arrival of a subsequent unit in same denomination (two‑event threshold). instruction splits: return consideration to participant + administrative fee. final credit depends on mobile operator clearing. Code98 not liable for third‑party delays.</p>
+                <p>Disbursement for the head triggers automatically on arrival of a subsequent unit in same denomination (two‑event threshold). instruction splits: return consideration to participant + administrative fee. final credit depends on mobile operator clearing. CODE 98 not liable for third‑party delays.</p>
                 <h2>4. denomination integrity</h2>
                 <p>50 KES pairs only with 50 KES; no mixing. preserves mathematical consistency.</p>
                 <h2>5. fee & tax</h2>
@@ -491,7 +491,7 @@
                 <p>Service “as is”. no liability for indirect or delayed disbursement. aggregate liability limited to fees paid by participant in prior 6 months.</p>
                 <h2>7. governing law · Kenya</h2>
                 <p>Disputes subject to Nairobi Centre for International Arbitration, then courts of Kenya.</p>
-                <p style="margin-top:2.5rem;">By using Code98 interfaces you accept these terms.</p>
+                <p style="margin-top:2.5rem;">By using CODE 98 interfaces you accept these terms.</p>
             </div>
         </div>
 
@@ -514,7 +514,7 @@
 
         <!-- footer -->
         <footer>
-            <p>© 2026 Code98 · FIFO payout engine</p>
+            <p>© 2026 CODE 98 · FIFO Payout engine</p>
             <p style="margin-top: 0.8rem; font-size:0.85rem;">M‑PESA and IntaSend are independent providers</p>
         </footer>
     </div>
